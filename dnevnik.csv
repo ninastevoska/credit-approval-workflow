@@ -1,0 +1,36 @@
+﻿case_id,activity,timestamp,resource,role,source,status,zaprosen_znesek,bonitetna_ocena,namen_kredita,pdf_path
+K-001,Izpolnitev in oddaja kreditne vloge,2026-10-28T20:09:14+01:00,miha.p,stranka,system,oddana,10000.0,,Nakup vozila,data/uploads/70a44bce661541d4910544c582640d02.pdf
+K-001,Samodejno preverjanje vloge,2026-10-28T20:09:14+01:00,sistem,sistem,system,preverjena,10000.0,,Nakup vozila,data/uploads/70a44bce661541d4910544c582640d02.pdf
+K-001,Prevzem kreditne vloge,2026-10-28T20:11:09+01:00,referent1,referent,system,v_pregledu,10000.0,,Nakup vozila,data/uploads/70a44bce661541d4910544c582640d02.pdf
+K-001,Pregled kreditne vloge,2026-10-28T20:12:03+01:00,referent1,referent,system,v_pregledu,10000.0,,Nakup vozila,data/uploads/70a44bce661541d4910544c582640d02.pdf
+K-001,Ocena kreditne sposobnosti,2026-10-28T20:12:20+01:00,referent1,referent,system,ocenjena,10000.0,A,Nakup vozila,data/uploads/70a44bce661541d4910544c582640d02.pdf
+K-001,Odobritev vloge,2026-10-28T20:13:25+01:00,referent1,referent,system,odlocitev_sprejeta,10000.0,A,Nakup vozila,data/uploads/70a44bce661541d4910544c582640d02.pdf
+K-001,Obveščanje o odobritvi,2026-10-28T20:13:25+01:00,sistem,sistem,system,odobrena,10000.0,A,Nakup vozila,data/uploads/70a44bce661541d4910544c582640d02.pdf
+K-002,Izpolnitev in oddaja kreditne vloge,2026-10-28T20:32:30+01:00,ana.k,stranka,system,oddana,15000.0,,Prenova stanovanja,data/uploads/fe932288ca3c4558a2ec1a7e135412ec.pdf
+K-002,Samodejno preverjanje vloge,2026-10-28T20:32:30+01:00,sistem,sistem,system,preverjena,15000.0,,Prenova stanovanja,data/uploads/fe932288ca3c4558a2ec1a7e135412ec.pdf
+K-002,Prevzem kreditne vloge,2026-10-28T20:33:37+01:00,referent2,referent,system,v_pregledu,15000.0,,Prenova stanovanja,data/uploads/fe932288ca3c4558a2ec1a7e135412ec.pdf
+K-002,Pregled kreditne vloge,2026-10-28T20:33:57+01:00,referent2,referent,system,v_pregledu,15000.0,,Prenova stanovanja,data/uploads/fe932288ca3c4558a2ec1a7e135412ec.pdf
+K-002,Ocena kreditne sposobnosti,2026-10-28T20:34:07+01:00,referent2,referent,system,ocenjena,15000.0,B,Prenova stanovanja,data/uploads/fe932288ca3c4558a2ec1a7e135412ec.pdf
+K-002,Odobritev vloge,2026-10-28T20:34:16+01:00,referent2,referent,system,odlocitev_sprejeta,15000.0,B,Prenova stanovanja,data/uploads/fe932288ca3c4558a2ec1a7e135412ec.pdf
+K-002,Obveščanje o odobritvi,2026-10-28T20:34:16+01:00,sistem,sistem,system,odobrena,15000.0,B,Prenova stanovanja,data/uploads/fe932288ca3c4558a2ec1a7e135412ec.pdf
+K-003,Izpolnitev in oddaja kreditne vloge,2026-10-28T20:37:18+01:00,marko.n,stranka,system,oddana,8000.0,,Nakup računalniške opreme,data/uploads/f6da29886f3341fba474cbb4eaea8790.pdf
+K-003,Samodejno preverjanje vloge,2026-10-28T20:37:18+01:00,sistem,sistem,system,preverjena,8000.0,,Nakup računalniške opreme,data/uploads/f6da29886f3341fba474cbb4eaea8790.pdf
+K-003,Prevzem kreditne vloge,2026-10-28T20:39:46+01:00,referent1,referent,system,v_pregledu,8000.0,,Nakup računalniške opreme,data/uploads/f6da29886f3341fba474cbb4eaea8790.pdf
+K-003,Pregled kreditne vloge,2026-10-28T20:39:56+01:00,referent1,referent,system,v_pregledu,8000.0,,Nakup računalniške opreme,data/uploads/f6da29886f3341fba474cbb4eaea8790.pdf
+K-003,Ocena kreditne sposobnosti,2026-10-28T20:40:14+01:00,referent1,referent,system,ocenjena,8000.0,A,Nakup računalniške opreme,data/uploads/f6da29886f3341fba474cbb4eaea8790.pdf
+K-003,Odobritev vloge,2026-10-28T20:40:23+01:00,referent1,referent,system,odlocitev_sprejeta,8000.0,A,Nakup računalniške opreme,data/uploads/f6da29886f3341fba474cbb4eaea8790.pdf
+K-003,Obveščanje o odobritvi,2026-10-28T20:40:23+01:00,sistem,sistem,system,odobrena,8000.0,A,Nakup računalniške opreme,data/uploads/f6da29886f3341fba474cbb4eaea8790.pdf
+K-004,Izpolnitev in oddaja kreditne vloge,2026-10-28T20:54:18+01:00,petra.z,stranka,system,oddana,20000.0,,Obnova stanovanja,data/uploads/8459eed8989b49ebb5e84a2ab3a14212.pdf
+K-004,Samodejno preverjanje vloge,2026-10-28T20:54:18+01:00,sistem,sistem,system,preverjena,20000.0,,Obnova stanovanja,data/uploads/8459eed8989b49ebb5e84a2ab3a14212.pdf
+K-004,Prevzem kreditne vloge,2026-10-28T20:55:12+01:00,referent2,referent,system,v_pregledu,20000.0,,Obnova stanovanja,data/uploads/8459eed8989b49ebb5e84a2ab3a14212.pdf
+K-004,Pregled kreditne vloge,2026-10-28T20:55:23+01:00,referent2,referent,system,v_pregledu,20000.0,,Obnova stanovanja,data/uploads/8459eed8989b49ebb5e84a2ab3a14212.pdf
+K-004,Ocena kreditne sposobnosti,2026-10-28T20:55:28+01:00,referent2,referent,system,ocenjena,20000.0,B,Obnova stanovanja,data/uploads/8459eed8989b49ebb5e84a2ab3a14212.pdf
+K-004,Odobritev vloge,2026-10-28T20:55:37+01:00,referent2,referent,system,odlocitev_sprejeta,20000.0,B,Obnova stanovanja,data/uploads/8459eed8989b49ebb5e84a2ab3a14212.pdf
+K-004,Obveščanje o odobritvi,2026-10-28T20:55:37+01:00,sistem,sistem,system,odobrena,20000.0,B,Obnova stanovanja,data/uploads/8459eed8989b49ebb5e84a2ab3a14212.pdf
+K-005,Izpolnitev in oddaja kreditne vloge,2026-10-28T20:57:54+01:00,luka.m,stranka,system,oddana,12500.0,,Nakup avtomobila,data/uploads/6524808dec8940fd9adfe975fc23630c.pdf
+K-005,Samodejno preverjanje vloge,2026-10-28T20:57:54+01:00,sistem,sistem,system,preverjena,12500.0,,Nakup avtomobila,data/uploads/6524808dec8940fd9adfe975fc23630c.pdf
+K-005,Prevzem kreditne vloge,2026-10-28T20:58:51+01:00,referent1,referent,system,v_pregledu,12500.0,,Nakup avtomobila,data/uploads/6524808dec8940fd9adfe975fc23630c.pdf
+K-005,Pregled kreditne vloge,2026-10-28T20:59:00+01:00,referent1,referent,system,v_pregledu,12500.0,,Nakup avtomobila,data/uploads/6524808dec8940fd9adfe975fc23630c.pdf
+K-005,Ocena kreditne sposobnosti,2026-10-28T20:59:09+01:00,referent1,referent,system,ocenjena,12500.0,A,Nakup avtomobila,data/uploads/6524808dec8940fd9adfe975fc23630c.pdf
+K-005,Odobritev vloge,2026-10-28T20:59:19+01:00,referent1,referent,system,odlocitev_sprejeta,12500.0,A,Nakup avtomobila,data/uploads/6524808dec8940fd9adfe975fc23630c.pdf
+K-005,Obveščanje o odobritvi,2026-10-28T20:59:19+01:00,sistem,sistem,system,odobrena,12500.0,A,Nakup avtomobila,data/uploads/6524808dec8940fd9adfe975fc23630c.pdf
