@@ -56,6 +56,11 @@ def _application_from_row(row: sqlite3.Row) -> CreditApplication:
             else None
         ),
         assigned_referent=row["assigned_referent"],
+        monthly_income=(
+            Decimal(row["monthly_income"])
+            if row["monthly_income"] is not None
+            else None
+        ),
     )
 
 
@@ -78,6 +83,11 @@ def _event_from_row(row: sqlite3.Row) -> ProcessEvent:
         ),
         namen_kredita=row["namen_kredita"],
         pdf_path=row["pdf_path"],
+        mesecni_prihodek=(
+            Decimal(row["mesecni_prihodek"])
+            if row["mesecni_prihodek"] is not None
+            else None
+        ),
     )
 
 
@@ -95,18 +105,24 @@ def _next_case_id(connection: sqlite3.Connection) -> str:
     return f"K-{next_number:03d}"
 
 
+
 def _save_application(
     connection: sqlite3.Connection,
     application: CreditApplication,
 ) -> None:
-    """Persist the current application state."""
+    """Persist the current application state and attributes."""
+
     connection.execute(
         """
         UPDATE credit_applications
         SET status = ?,
             current_step = ?,
             credit_rating = ?,
-            assigned_referent = ?
+            assigned_referent = ?,
+            requested_amount = ?,
+            loan_purpose = ?,
+            pdf_path = ?,
+            monthly_income = ?
         WHERE case_id = ?
         """,
         (
@@ -118,9 +134,18 @@ def _save_application(
                 else None
             ),
             application.assigned_referent,
+            str(application.requested_amount),
+            application.loan_purpose,
+            application.pdf_path,
+            (
+                str(application.monthly_income)
+                if application.monthly_income is not None
+                else None
+            ),
             application.case_id,
         ),
     )
+
 
 
 def _execute_transition(
@@ -170,17 +195,24 @@ def _execute_transition(
 
 
 
+
 def _run_automatic_steps(
     connection: sqlite3.Connection,
     application: CreditApplication,
 ) -> CreditApplication:
-    """Execute automatic steps and their required checks."""
-    while application.current_step in {
+    """Execute automatic workflow activities."""
+
+    automatic_steps = {
         "verify_application",
         "notify_approval",
-    }:
+        "notify_rejection",
+        "notify_completion_request",
+    }
+
+    while application.current_step in automatic_steps:
+
+        # Validate newly submitted applications before review.
         if application.current_step == "verify_application":
-            # Check the submitted application before marking it verified.
             verify_application_data(application)
 
         application = _execute_transition(
@@ -194,12 +226,14 @@ def _run_automatic_steps(
 
 
 
+
 def submit_application(
     customer: User,
     requested_amount: Decimal,
     loan_purpose: str,
     pdf_path: str,
     db_path: Path = DATABASE_PATH,
+    monthly_income: Decimal | None = None,
 ) -> CreditApplication:
     """Submit a new application and perform automatic verification.
 
@@ -226,6 +260,19 @@ def submit_application(
     if not pdf_path.strip():
         raise ValueError("A stored PDF reference is required.")
 
+    # Preserve compatibility with applications from the previous version.
+    # New interactive PDF submissions will provide this value.
+    if monthly_income is not None:
+        try:
+            monthly_income = Decimal(str(monthly_income))
+        except (InvalidOperation, ValueError) as exc:
+            raise ValueError("Invalid monthly income.") from exc
+
+        if not monthly_income.is_finite() or monthly_income < 0:
+            raise ValueError(
+                "Monthly income must be finite and nonnegative."
+            )
+
     with get_connection(db_path) as connection:
         # Serialize case ID generation and subsequent writes.
         connection.execute("BEGIN IMMEDIATE")
@@ -243,6 +290,7 @@ def submit_application(
             status=ApplicationStatus.SUBMITTED,
             current_step="submit_application",
             created_at=created_at,
+            monthly_income=monthly_income,
         )
 
         connection.execute(
@@ -251,9 +299,10 @@ def submit_application(
                 case_id, customer_id, requested_amount,
                 loan_purpose, pdf_path, status,
                 current_step, created_at,
-                credit_rating, assigned_referent
+                credit_rating, assigned_referent,
+                monthly_income
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 application.case_id,
@@ -266,6 +315,11 @@ def submit_application(
                 application.created_at.isoformat(),
                 None,
                 None,
+                (
+                    str(application.monthly_income)
+                    if application.monthly_income is not None
+                    else None
+                ),
             ),
         )
 
@@ -299,6 +353,11 @@ def perform_action(
             "System activities cannot be triggered manually."
         )
 
+    if step == "submit_supplement":
+        raise WorkflowError(
+            "Document supplementation requires a validated PDF."
+        )
+    
     with get_connection(db_path) as connection:
         # Lock before reading to prevent competing updates.
         connection.execute("BEGIN IMMEDIATE")
@@ -384,6 +443,7 @@ def submit_application_with_pdf(
     pdf_content: bytes,
     db_path: Path = DATABASE_PATH,
     upload_dir: Path = UPLOAD_DIR,
+    monthly_income: Decimal | None = None,
 ) -> CreditApplication:
     """Store an uploaded PDF and submit its credit application.
 
@@ -408,6 +468,7 @@ def submit_application_with_pdf(
             loan_purpose=loan_purpose,
             pdf_path=pdf_reference,
             db_path=db_path,
+            monthly_income=monthly_income,
         )
 
     except Exception:
@@ -415,3 +476,85 @@ def submit_application_with_pdf(
         delete_pdf(pdf_reference, upload_dir=upload_dir)
         raise
 
+
+def submit_application_supplement(
+    case_id: str,
+    customer: User,
+    pdf_filename: str,
+    pdf_content: bytes,
+    db_path: Path = DATABASE_PATH,
+    upload_dir: Path = UPLOAD_DIR,
+) -> CreditApplication:
+    """Submit a validated PDF supplement for an existing application.
+
+    The application retains its case ID.
+    Database changes and the new event are committed together.
+    The new PDF is removed if the operation fails.
+    """
+
+    from services.pdf_form_service import read_credit_form
+
+    # Read and validate the PDF before saving anything.
+    form_data = read_credit_form(pdf_content)
+
+    pdf_reference = None
+
+    try:
+        with get_connection(db_path) as connection:
+            connection.execute("BEGIN IMMEDIATE")
+
+            row = connection.execute(
+                """
+                SELECT *
+                FROM credit_applications
+                WHERE case_id = ?
+                """,
+                (case_id,),
+            ).fetchone()
+
+            if row is None:
+                raise ValueError(
+                    f"Application '{case_id}' not found."
+                )
+
+            application = _application_from_row(row)
+
+            # Verify the current workflow step and customer identity.
+            validate_transition(
+                application=application,
+                step="submit_supplement",
+                role=customer.role,
+                username=customer.username,
+            )
+
+            # Store the validated document.
+            pdf_reference = save_pdf(
+                filename=pdf_filename,
+                content=pdf_content,
+                upload_dir=upload_dir,
+            )
+
+            # Update the existing application with the new PDF data.
+            updated = replace(
+                application,
+                requested_amount=form_data.zaprosen_znesek,
+                loan_purpose=form_data.namen_kredita,
+                monthly_income=form_data.mesecni_prihodek,
+                pdf_path=pdf_reference,
+            )
+
+            # Execute the customer activity and record its event.
+            updated = _execute_transition(
+                connection=connection,
+                application=updated,
+                step="submit_supplement",
+                actor=customer,
+            )
+
+            return updated
+
+    except Exception:
+        # Avoid leaving an unused PDF when the operation fails.
+        if pdf_reference is not None:
+            delete_pdf(pdf_reference, upload_dir=upload_dir)
+        raise

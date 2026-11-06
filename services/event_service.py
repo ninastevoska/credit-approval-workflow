@@ -1,11 +1,11 @@
 """Event logging and CSV export.
 
 Responsibilities:
-- Create events using the schema from Naloga 3.
+- Create events using the process event log schema.
 - Append events to the database.
 - Export the complete event log to CSV.
 
-The caller manages the database transaction.
+The caller manages database transactions.
 Existing events are never modified or deleted.
 """
 
@@ -19,8 +19,7 @@ from models import CreditApplication, ProcessEvent, UserRole
 from services.workflow_service import WorkflowTransition
 
 
-# Column order follows Naloga 3.
-# pdf_path is the additional attribute required by Naloga 4.
+# Keep existing columns and add the new PDF attribute.
 EVENT_LOG_COLUMNS = (
     "case_id",
     "activity",
@@ -33,6 +32,7 @@ EVENT_LOG_COLUMNS = (
     "bonitetna_ocena",
     "namen_kredita",
     "pdf_path",
+    "mesecni_prihodek",
 )
 
 
@@ -43,11 +43,8 @@ def create_event(
     role: UserRole,
     timestamp: datetime | None = None,
 ) -> ProcessEvent:
-    """Build an event for a successfully executed activity.
+    """Create an event from the application's current data."""
 
-    The application must already contain the resulting state
-    and any updated data, such as the credit rating.
-    """
     if timestamp is None:
         timestamp = datetime.now().astimezone()
 
@@ -63,6 +60,7 @@ def create_event(
         bonitetna_ocena=application.credit_rating,
         namen_kredita=application.loan_purpose,
         pdf_path=application.pdf_path,
+        mesecni_prihodek=application.monthly_income,
     )
 
 
@@ -70,12 +68,8 @@ def append_event(
     connection: sqlite3.Connection,
     event: ProcessEvent,
 ) -> int:
-    """Insert one event and return its database ID.
+    """Append one event without committing the transaction."""
 
-    This function does not commit the transaction.
-    The caller must commit the application update and event
-    together to preserve consistency.
-    """
     cursor = connection.execute(
         """
         INSERT INTO process_events (
@@ -89,9 +83,10 @@ def append_event(
             zaprosen_znesek,
             bonitetna_ocena,
             namen_kredita,
-            pdf_path
+            pdf_path,
+            mesecni_prihodek
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
             event.case_id,
@@ -109,6 +104,11 @@ def append_event(
             ),
             event.namen_kredita,
             event.pdf_path,
+            (
+                str(event.mesecni_prihodek)
+                if event.mesecni_prihodek is not None
+                else None
+            ),
         ),
     )
 
@@ -119,11 +119,8 @@ def export_event_log(
     connection: sqlite3.Connection,
     output_path: Path = EVENT_LOG_EXPORT_PATH,
 ) -> Path:
-    """Export all events ordered by case ID and timestamp.
+    """Export events ordered by case ID, timestamp and event ID."""
 
-    The event ID is used as a deterministic tie-breaker
-    when two events have the same timestamp.
-    """
     rows = connection.execute(
         """
         SELECT
@@ -137,7 +134,8 @@ def export_event_log(
             zaprosen_znesek,
             bonitetna_ocena,
             namen_kredita,
-            pdf_path
+            pdf_path,
+            mesecni_prihodek
         FROM process_events
         ORDER BY case_id, timestamp, event_id
         """
