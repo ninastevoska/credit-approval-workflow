@@ -3,7 +3,7 @@
 Responsibilities:
 - Open and close database connections.
 - Manage transactions.
-- Create the database schema.
+- Create and migrate the database schema.
 - Protect the event log from modification.
 
 Business rules and application operations belong in services,
@@ -22,17 +22,12 @@ from config import DATABASE_PATH, ensure_directories
 def get_connection(
     db_path: Path = DATABASE_PATH,
 ) -> Iterator[sqlite3.Connection]:
-    """Provide a database connection with transaction handling.
+    """Provide a database connection with transaction handling."""
 
-    Commit changes on success, roll back on failure, and always
-    close the connection.
-    """
     connection = sqlite3.connect(db_path)
 
     try:
         connection.row_factory = sqlite3.Row
-
-        # SQLite does not enable foreign key checks by default.
         connection.execute("PRAGMA foreign_keys = ON")
 
         yield connection
@@ -47,13 +42,30 @@ def get_connection(
         connection.close()
 
 
+def _add_column_if_missing(
+    connection: sqlite3.Connection,
+    table: str,
+    column: str,
+    definition: str,
+) -> None:
+    """Add a column without deleting or changing existing records."""
+
+    existing_columns = {
+        row["name"]
+        for row in connection.execute(f"PRAGMA table_info({table})")
+    }
+
+    if column not in existing_columns:
+        connection.execute(
+            f"ALTER TABLE {table} ADD COLUMN {column} {definition}"
+        )
+
+
 def initialize_database(
     db_path: Path = DATABASE_PATH,
 ) -> None:
-    """Create application tables, indexes, and event-log guards.
+    """Create or upgrade the database without losing existing data."""
 
-    Existing tables and records are preserved.
-    """
     if db_path == DATABASE_PATH:
         ensure_directories()
     else:
@@ -79,6 +91,7 @@ def initialize_database(
                         OR credit_rating IN ('A', 'B', 'C')
                     ),
                 assigned_referent TEXT,
+                monthly_income TEXT,
 
                 CHECK (CAST(requested_amount AS REAL) > 0)
             )
@@ -86,7 +99,6 @@ def initialize_database(
         )
 
         # Append-only history of process activities.
-        # Column names follow the event log from Assignment 3.
         connection.execute(
             """
             CREATE TABLE IF NOT EXISTS process_events (
@@ -107,11 +119,28 @@ def initialize_database(
                     ),
                 namen_kredita TEXT NOT NULL,
                 pdf_path TEXT NOT NULL,
+                mesecni_prihodek TEXT,
 
                 FOREIGN KEY (case_id)
                     REFERENCES credit_applications(case_id)
             )
             """
+        )
+
+        # Upgrade databases created by the previous version.
+        # Existing rows receive NULL for the new attribute.
+        _add_column_if_missing(
+            connection,
+            "credit_applications",
+            "monthly_income",
+            "TEXT",
+        )
+
+        _add_column_if_missing(
+            connection,
+            "process_events",
+            "mesecni_prihodek",
+            "TEXT",
         )
 
         # Optimize reading a case's event history.

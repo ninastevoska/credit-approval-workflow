@@ -61,12 +61,16 @@ class CreditApplication:
     credit_rating: CreditRating | None = None
     assigned_referent: str | None = None
 
+    # None is supported for applications created before
+    # interactive PDF forms were introduced.
+    monthly_income: Decimal | None = None
+    completion_reason: str | None = None
+
 
 @dataclass(frozen=True)
 class ProcessEvent:
-    """One immutable event in the process event log.
+    """One immutable event in the process event log."""
 
-    """
     case_id: str
     activity: str
     timestamp: datetime
@@ -79,3 +83,6 @@ class ProcessEvent:
     namen_kredita: str
     pdf_path: str
     event_id: int | None = None
+
+    # Attribute extracted from the interactive PDF.
+    mesecni_prihodek: Decimal | None = None
