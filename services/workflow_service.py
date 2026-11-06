@@ -1,9 +1,11 @@
 """Workflow definitions and transition validation.
 
-This module contains the business rules for the happy path
-defined in Assignment 3.
+Supports:
+- Happy path (approval by referent).
+- Rejection by referent.
+- Document supplementation loop.
 
-It does not access the database or the user interface.
+This module defines business rules without database access.
 """
 
 from dataclasses import dataclass
@@ -23,7 +25,7 @@ class WorkflowError(ValueError):
 
 @dataclass(frozen=True)
 class WorkflowTransition:
-    """Definition of one allowed workflow transition."""
+    """Definition of one process activity."""
 
     step: str
     activity: str
@@ -32,69 +34,119 @@ class WorkflowTransition:
     next_status: ApplicationStatus
 
 
-# The seven activities of the happy path.
-# Their names and resulting statuses match Assignment 3.
+# Original seven activities of the happy path.
 TRANSITIONS: dict[str, WorkflowTransition] = {
     "submit_application": WorkflowTransition(
-        step="submit_application",
-        activity="Izpolnitev in oddaja kreditne vloge",
-        required_role=UserRole.CUSTOMER,
-        next_step="verify_application",
-        next_status=ApplicationStatus.SUBMITTED,
+        "submit_application",
+        "Izpolnitev in oddaja kreditne vloge",
+        UserRole.CUSTOMER,
+        "verify_application",
+        ApplicationStatus.SUBMITTED,
     ),
     "verify_application": WorkflowTransition(
-        step="verify_application",
-        activity="Samodejno preverjanje vloge",
-        required_role=UserRole.SYSTEM,
-        next_step="claim_application",
-        next_status=ApplicationStatus.VERIFIED,
+        "verify_application",
+        "Samodejno preverjanje vloge",
+        UserRole.SYSTEM,
+        "claim_application",
+        ApplicationStatus.VERIFIED,
     ),
     "claim_application": WorkflowTransition(
-        step="claim_application",
-        activity="Prevzem kreditne vloge",
-        required_role=UserRole.REFERENT,
-        next_step="review_application",
-        next_status=ApplicationStatus.IN_REVIEW,
+        "claim_application",
+        "Prevzem kreditne vloge",
+        UserRole.REFERENT,
+        "review_application",
+        ApplicationStatus.IN_REVIEW,
     ),
     "review_application": WorkflowTransition(
-        step="review_application",
-        activity="Pregled kreditne vloge",
-        required_role=UserRole.REFERENT,
-        next_step="assess_creditworthiness",
-        next_status=ApplicationStatus.IN_REVIEW,
+        "review_application",
+        "Pregled kreditne vloge",
+        UserRole.REFERENT,
+        "assess_creditworthiness",
+        ApplicationStatus.IN_REVIEW,
     ),
     "assess_creditworthiness": WorkflowTransition(
-        step="assess_creditworthiness",
-        activity="Ocena kreditne sposobnosti",
-        required_role=UserRole.REFERENT,
-        next_step="approve_application",
-        next_status=ApplicationStatus.ASSESSED,
+        "assess_creditworthiness",
+        "Ocena kreditne sposobnosti",
+        UserRole.REFERENT,
+        "approve_application",
+        ApplicationStatus.ASSESSED,
     ),
     "approve_application": WorkflowTransition(
-        step="approve_application",
-        activity="Odobritev vloge",
-        required_role=UserRole.REFERENT,
-        next_step="notify_approval",
-        next_status=ApplicationStatus.DECISION_MADE,
+        "approve_application",
+        "Odobritev vloge",
+        UserRole.REFERENT,
+        "notify_approval",
+        ApplicationStatus.DECISION_MADE,
     ),
     "notify_approval": WorkflowTransition(
-        step="notify_approval",
-        activity="Obveščanje o odobritvi",
-        required_role=UserRole.SYSTEM,
-        next_step="completed",
-        next_status=ApplicationStatus.APPROVED,
+        "notify_approval",
+        "Obveščanje o odobritvi",
+        UserRole.SYSTEM,
+        "completed",
+        ApplicationStatus.APPROVED,
     ),
 }
 
 
+# Additional workflow activities for rejection and document supplementation.
+ADDITIONAL_TRANSITIONS: dict[str, WorkflowTransition] = {
+    "request_completion": WorkflowTransition(
+        "request_completion",
+        "Priprava zahteve za dopolnitev vloge",
+        UserRole.REFERENT,
+        "notify_completion_request",
+        ApplicationStatus.AWAITING_COMPLETION,
+    ),
+    "notify_completion_request": WorkflowTransition(
+        "notify_completion_request",
+        "Pošiljanje zahteve za dopolnitev",
+        UserRole.SYSTEM,
+        "submit_supplement",
+        ApplicationStatus.AWAITING_COMPLETION,
+    ),
+    "submit_supplement": WorkflowTransition(
+        "submit_supplement",
+        "Dopolnitev in oddaja kreditne vloge",
+        UserRole.CUSTOMER,
+        "review_application",
+        ApplicationStatus.COMPLETED_DOCUMENTS,
+    ),
+    "reject_application": WorkflowTransition(
+        "reject_application",
+        "Zavrnitev vloge",
+        UserRole.REFERENT,
+        "notify_rejection",
+        ApplicationStatus.DECISION_MADE,
+    ),
+    "notify_rejection": WorkflowTransition(
+        "notify_rejection",
+        "Obveščanje o zavrnitvi",
+        UserRole.SYSTEM,
+        "completed",
+        ApplicationStatus.REJECTED,
+    ),
+}
+
+
+# Alternative actions available at selected process steps.
+ALTERNATIVE_ACTIONS = {
+    "assess_creditworthiness": ("request_completion",),
+    "approve_application": ("reject_application",),
+}
+
+
 def get_transition(step: str) -> WorkflowTransition:
-    """Return the transition associated with a workflow step."""
-    try:
+    """Return a defined process transition."""
+
+    if step in TRANSITIONS:
         return TRANSITIONS[step]
-    except KeyError as exc:
-        raise WorkflowError(
-            f"Unknown or completed workflow step: {step}"
-        ) from exc
+
+    if step in ADDITIONAL_TRANSITIONS:
+        return ADDITIONAL_TRANSITIONS[step]
+
+    raise WorkflowError(
+        f"Unknown or completed workflow step: {step}"
+    )
 
 
 def validate_transition(
@@ -103,19 +155,19 @@ def validate_transition(
     role: UserRole,
     username: str | None = None,
 ) -> WorkflowTransition:
-    """Validate a requested action without changing application data.
+    """Check that an actor may execute a process activity."""
 
-    Checks:
-    - The requested action is the current workflow step.
-    - The actor has the required role.
-    - Only the assigned referent can continue a claimed case.
-    - Direct approval is restricted to amounts up to 20,000 EUR.
-    - Only applications rated A or B can be approved directly.
-    """
-    if application.current_step != step:
+    current = application.current_step
+
+    allowed_steps = {
+        current,
+        *ALTERNATIVE_ACTIONS.get(current, ()),
+    }
+
+    if step not in allowed_steps:
         raise WorkflowError(
             f"Action '{step}' is not allowed. "
-            f"Expected: '{application.current_step}'."
+            f"Expected one of: {sorted(allowed_steps)}."
         )
 
     transition = get_transition(step)
@@ -125,16 +177,22 @@ def validate_transition(
             f"Role '{role.value}' cannot perform '{step}'."
         )
 
-    if step in {
+    # Only the assigned referent may process this application.
+    referent_actions = {
         "review_application",
         "assess_creditworthiness",
         "approve_application",
-    }:
+        "request_completion",
+        "reject_application",
+    }
+
+    if step in referent_actions:
         if not username or username != application.assigned_referent:
             raise WorkflowError(
                 "Only the assigned referent can process this application."
             )
 
+    # A new application may be claimed by one referent only.
     if step == "claim_application":
         if not username:
             raise WorkflowError("A referent identity is required.")
@@ -142,6 +200,14 @@ def validate_transition(
         if application.assigned_referent is not None:
             raise WorkflowError("Application is already assigned.")
 
+    # Only the original customer may submit a supplement.
+    if step == "submit_supplement":
+        if not username or username != application.customer_id:
+            raise WorkflowError(
+                "Only the application owner can submit a supplement."
+            )
+
+    # Direct approval follows the existing credit rules.
     if step == "approve_application":
         if application.requested_amount > REFERENT_APPROVAL_LIMIT:
             raise WorkflowError(
@@ -164,26 +230,43 @@ def get_available_actions(
     role: UserRole,
     username: str | None = None,
 ) -> list[WorkflowTransition]:
-    """Return actions currently available to a user.
+    """Return all permitted actions at the current process step."""
 
-    Invalid or completed states produce an empty list.
-    """
-    try:
-        transition = validate_transition(
-            application=application,
-            step=application.current_step,
-            role=role,
-            username=username,
-        )
-    except WorkflowError:
+    current = application.current_step
+
+    if current == "completed":
         return []
 
-    return [transition]
+    candidate_steps = (
+        current,
+        *ALTERNATIVE_ACTIONS.get(current, ()),
+    )
+
+    actions = []
+
+    for step in candidate_steps:
+        try:
+            transition = validate_transition(
+                application,
+                step,
+                role,
+                username,
+            )
+        except WorkflowError:
+            continue
+
+        actions.append(transition)
+
+    return actions
 
 
 def is_completed(application: CreditApplication) -> bool:
-    """Return whether the happy-path process has finished."""
+    """Check whether the process has reached a final state."""
+
     return (
         application.current_step == "completed"
-        and application.status == ApplicationStatus.APPROVED
+        and application.status in {
+            ApplicationStatus.APPROVED,
+            ApplicationStatus.REJECTED,
+        }
     )
