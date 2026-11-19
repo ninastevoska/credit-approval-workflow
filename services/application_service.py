@@ -163,6 +163,7 @@ def _execute_transition(
     step: str,
     actor: User,
     credit_rating: CreditRating | None = None,
+    unrestricted: bool = False,
 ) -> CreditApplication:
     """Validate and execute one transition within a transaction.
 
@@ -173,6 +174,7 @@ def _execute_transition(
         step=step,
         role=actor.role,
         username=actor.username,
+        unrestricted=unrestricted,
     )
 
     updated = replace(
@@ -351,6 +353,7 @@ def perform_action(
     actor: User,
     credit_rating: CreditRating | None = None,
     db_path: Path = DATABASE_PATH,
+    unrestricted: bool = False,
 ) -> CreditApplication:
     """Execute one user action and any resulting automatic steps.
 
@@ -361,7 +364,18 @@ def perform_action(
         raise WorkflowError(
             "System activities cannot be triggered manually."
         )
+    automatic_only_steps = {
+        "submit_application",
+        "verify_application",
+        "notify_approval",
+        "notify_rejection",
+        "notify_completion_request",
+    }
 
+    if step in automatic_only_steps:
+        raise WorkflowError(
+            "This activity cannot be triggered manually."
+        )
     if step == "submit_supplement":
         raise WorkflowError(
             "Document supplementation requires a validated PDF."
@@ -387,6 +401,8 @@ def perform_action(
             step=step,
             actor=actor,
             credit_rating=credit_rating,
+            unrestricted=unrestricted,
+
         )
 
         # Approval automatically produces a notification event.

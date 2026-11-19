@@ -306,3 +306,264 @@ def test_complete_manager_workflow(
     assert events[6].resource == "vodja1"
     assert events[7].resource == "vodja1"
     assert events[8].resource == "sistem"
+
+
+def test_unrestricted_referent_can_approve_above_limit():
+    """An unrestricted referent may exceed the approval limit."""
+    application = make_application(amount="25000")
+
+    transition = validate_transition(
+        application,
+        "approve_application",
+        UserRole.REFERENT,
+        "referent1",
+        unrestricted=True,
+    )
+
+    assert transition.next_step == "notify_approval"
+
+
+def test_normal_mode_still_enforces_approval_limit():
+    """The normal mode must retain existing authority rules."""
+    application = make_application(amount="25000")
+
+    with pytest.raises(WorkflowError):
+        validate_transition(
+            application,
+            "approve_application",
+            UserRole.REFERENT,
+            "referent1",
+            unrestricted=False,
+        )
+
+
+def test_unrestricted_mode_allows_different_role():
+    """An actor may perform another role's action."""
+    application = make_application(step="manager_approve")
+
+    transition = validate_transition(
+        application,
+        "manager_approve",
+        UserRole.REFERENT,
+        "referent1",
+        unrestricted=True,
+    )
+
+    assert transition.next_step == "notify_approval"
+
+
+def test_unrestricted_mode_allows_rejection_above_limit():
+    """A referent may reject a high-value case in unrestricted mode."""
+    application = make_application(amount="25000")
+
+    transition = validate_transition(
+        application,
+        "reject_application",
+        UserRole.REFERENT,
+        "referent1",
+        unrestricted=True,
+    )
+
+    assert transition.next_step == "notify_rejection"
+
+
+def test_unrestricted_mode_preserves_workflow_order():
+    """Unrestricted authority does not automatically permit skipping."""
+    application = make_application(step="review_application")
+
+    with pytest.raises(WorkflowError):
+        validate_transition(
+            application,
+            "manager_approve",
+            UserRole.REFERENT,
+            "referent1",
+            unrestricted=True,
+        )
+
+
+def test_unrestricted_mode_cannot_modify_completed_case():
+    """Completed cases cannot receive another process decision."""
+    application = make_application(step="completed")
+
+    with pytest.raises(WorkflowError):
+        validate_transition(
+            application,
+            "approve_application",
+            UserRole.REFERENT,
+            "referent1",
+            unrestricted=True,
+        )
+
+
+def test_available_actions_in_unrestricted_mode():
+    """Unrestricted mode exposes additional decision options."""
+    application = make_application(amount="25000")
+
+    normal_actions = get_available_actions(
+        application,
+        UserRole.REFERENT,
+        "referent1",
+    )
+
+    unrestricted_actions = get_available_actions(
+        application,
+        UserRole.REFERENT,
+        "referent1",
+        unrestricted=True,
+    )
+
+    assert {action.step for action in normal_actions} == {
+        "forward_to_manager"
+    }
+
+    assert {action.step for action in unrestricted_actions} == {
+        "approve_application",
+        "reject_application",
+        "forward_to_manager",
+    }
+
+
+@pytest.mark.parametrize(
+    "decision,expected_status,expected_activity",
+    [
+        (
+            "approve_application",
+            ApplicationStatus.APPROVED,
+            "Odobritev vloge",
+        ),
+        (
+            "reject_application",
+            ApplicationStatus.REJECTED,
+            "Zavrnitev vloge",
+        ),
+    ],
+)
+def test_unrestricted_referent_decision_is_persisted(
+    tmp_path,
+    decision,
+    expected_status,
+    expected_activity,
+):
+    """An unrestricted referent decision must be saved correctly."""
+
+    db_path = tmp_path / "unrestricted_workflow.db"
+    initialize_database(db_path)
+
+    customer = User("customer1", UserRole.CUSTOMER)
+    referent = User("referent1", UserRole.REFERENT)
+
+    application = submit_application(
+        customer=customer,
+        requested_amount=Decimal("25000"),
+        loan_purpose="prenova_stanovanja",
+        pdf_path="uploads/test.pdf",
+        monthly_income=Decimal("2500"),
+        db_path=db_path,
+    )
+
+    for step in ("claim_application", "review_application"):
+        application = perform_action(
+            application.case_id,
+            step,
+            referent,
+            db_path=db_path,
+        )
+
+    application = perform_action(
+        application.case_id,
+        "assess_creditworthiness",
+        referent,
+        credit_rating=CreditRating.A,
+        db_path=db_path,
+    )
+
+    # Normal mode must reject a decision above the limit.
+    with pytest.raises(WorkflowError):
+        perform_action(
+            application.case_id,
+            decision,
+            referent,
+            db_path=db_path,
+        )
+
+    # Unrestricted mode allows the same decision.
+    application = perform_action(
+        application.case_id,
+        decision,
+        referent,
+        db_path=db_path,
+        unrestricted=True,
+    )
+
+    assert application.status == expected_status
+    assert application.current_step == "completed"
+
+    saved = get_application(application.case_id, db_path)
+
+    assert saved is not None
+    assert saved.status == expected_status
+
+    events = get_application_events(application.case_id, db_path)
+
+    assert len(events) == 7
+    assert events[-2].activity == expected_activity
+    assert events[-2].resource == "referent1"
+    assert events[-2].role == UserRole.REFERENT
+    assert events[-1].resource == "sistem"
+    assert events[-1].role == UserRole.SYSTEM
+
+
+def test_unrestricted_mode_can_skip_review():
+    """Unrestricted mode may skip the application review."""
+    application = make_application(step="review_application")
+
+    transition = validate_transition(
+        application,
+        "assess_creditworthiness",
+        UserRole.REFERENT,
+        "referent1",
+        unrestricted=True,
+    )
+
+    assert transition.next_step == "approve_application"
+    assert transition.next_status == ApplicationStatus.ASSESSED
+
+
+def test_normal_mode_cannot_skip_review():
+    """Normal mode requires the application review."""
+    application = make_application(step="review_application")
+
+    with pytest.raises(WorkflowError):
+        validate_transition(
+            application,
+            "assess_creditworthiness",
+            UserRole.REFERENT,
+            "referent1",
+            unrestricted=False,
+        )
+
+
+def test_available_actions_include_skip_only_when_unrestricted():
+    application = make_application(step="review_application")
+
+    normal_actions = get_available_actions(
+        application,
+        UserRole.REFERENT,
+        "referent1",
+    )
+
+    unrestricted_actions = get_available_actions(
+        application,
+        UserRole.REFERENT,
+        "referent1",
+        unrestricted=True,
+    )
+
+    assert {action.step for action in normal_actions} == {
+        "review_application"
+    }
+
+    assert {action.step for action in unrestricted_actions} == {
+        "review_application",
+        "assess_creditworthiness",
+    }

@@ -203,6 +203,10 @@ def _perform_referent_action(
             step=step,
             actor=referent,
             credit_rating=credit_rating,
+            unrestricted=st.session_state.get(
+                f"unrestricted_{referent.username}_{application.case_id}",
+                False,
+            ),
         )
 
     except (WorkflowError, ValueError) as exc:
@@ -229,11 +233,28 @@ def _show_actions(
     """Display the workflow actions available to this referent."""
 
     st.subheader("Obravnava vloge")
+    unrestricted = st.checkbox(
+        "Način brez omejitev",
+        value=False,
+        key=f"unrestricted_{referent.username}_{application.case_id}",
+        help=(
+            "Omogoči izvajanje akcij brez preverjanja pristojnosti. "
+            "Uporabljajte za beleženje odstopanj od predpisanega procesa."
+        ),
+    )
+
+    if unrestricted:
+        st.warning(
+            "Način brez omejitev je vključen. "
+            "Izvedete lahko tudi akcije zunaj svojih pristojnosti. "
+            "Dejanski izvajalec bo zabeležen v dnevniku dogodkov."
+        )
 
     actions = get_available_actions(
         application=application,
         role=referent.role,
         username=referent.username,
+        unrestricted=unrestricted,
     )
 
     
