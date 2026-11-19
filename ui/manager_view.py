@@ -1,14 +1,12 @@
-
 """Streamlit interface for the credit application manager.
 
 Responsibilities:
 - Display an overview of all credit applications.
 - Present summary statistics.
 - Allow navigation to individual application details.
-- Explain cases requiring manager decisions.
+- Review applications forwarded by referents.
+- Approve or reject applications within manager authority.
 
-Manager decisions are outside the currently implemented happy path.
-Process event logging remains internal.
 """
 
 import streamlit as st
@@ -20,7 +18,14 @@ from models import (
     User,
     UserRole,
 )
-from services.application_service import list_applications
+from services.application_service import (
+    list_applications,
+    perform_action,
+)
+from services.workflow_service import (
+    WorkflowError,
+    get_available_actions,
+)
 from ui.components import format_status, show_application_summary
 
 
@@ -51,11 +56,12 @@ def _show_statistics(
 
     in_progress = total - approved - rejected
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
 
     col1.metric("Vse vloge", total)
     col2.metric("Odobrene", approved)
-    col3.metric("V obravnavi", in_progress)
+    col3.metric("Zavrnjene", rejected)
+    col4.metric("V obravnavi", in_progress)
 
 
 def _show_application_overview(
@@ -107,6 +113,7 @@ def _show_application_overview(
 
 def _show_application_details(
     application: CreditApplication,
+    manager: User,
 ) -> None:
     """Show one application and a way back to the overview."""
     if st.button(
@@ -122,31 +129,122 @@ def _show_application_details(
     with st.container(border=True):
         show_application_summary(application)
 
-    if application.status == ApplicationStatus.APPROVED:
+   
+
+    st.subheader("Obravnava vloge")
+
+    actions = get_available_actions(
+        application=application,
+        role=manager.role,
+        username=manager.username,
+    )
+
+    allowed_steps = {action.step for action in actions}
+
+    if "manager_review" in allowed_steps:
+        st.info(
+            "Vloga je bila posredovana vodji. "
+            "Preglejte podatke in zaključite pregled."
+        )
+
+        if st.button(
+            "Zaključi pregled",
+            type="primary",
+            key=f"manager_review_{application.case_id}",
+            width="stretch",
+        ):
+            _perform_manager_action(
+                application,
+                "manager_review",
+                manager,
+            )
+
+    elif "manager_approve" in allowed_steps:
+        st.write(
+            "Pregled vloge je zaključen. "
+            "Izberite končno odločitev."
+        )
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if st.button(
+                "Odobri kreditno vlogo",
+                type="primary",
+                key=f"manager_approve_{application.case_id}",
+                width="stretch",
+            ):
+                _perform_manager_action(
+                    application,
+                    "manager_approve",
+                    manager,
+                )
+
+        with col2:
+            if st.button(
+                "Zavrni kreditno vlogo",
+                key=f"manager_reject_{application.case_id}",
+                width="stretch",
+            ):
+                _perform_manager_action(
+                    application,
+                    "manager_reject",
+                    manager,
+                )
+
+    elif application.status == ApplicationStatus.APPROVED:
         st.success("Kreditna vloga je odobrena.")
 
     elif application.status == ApplicationStatus.REJECTED:
         st.info("Kreditna vloga je zavrnjena.")
 
-    elif (
-        application.current_step == "approve_application"
-        and application.requested_amount > REFERENT_APPROVAL_LIMIT
-    ):
-        st.warning(
-            "Zaprošeni znesek presega pristojnost referenta. "
-            "Odločitev vodje bo omogočena ob razširitvi procesa."
-        )
-
     elif application.current_step == "approve_application":
-        st.info(
-            "Vloga je ocenjena in čaka na odločitev referenta."
-        )
+        if application.requested_amount > REFERENT_APPROVAL_LIMIT:
+            st.info(
+                "Vloga čaka, da jo referent posreduje vodji."
+            )
+        else:
+            st.info(
+                "Vloga čaka na odločitev referenta."
+            )
 
     elif application.assigned_referent is None:
         st.info("Vloga čaka na prevzem referenta.")
 
     else:
-        st.info("Vloga je v obravnavi.")
+        st.info("Vloga je v obravnavi pri referentu.")
+
+
+
+
+def _perform_manager_action(
+    application: CreditApplication,
+    step: str,
+    manager: User,
+) -> None:
+    """Execute a manager action and refresh the application."""
+
+    try:
+        perform_action(
+            case_id=application.case_id,
+            step=step,
+            actor=manager,
+        )
+
+    except (WorkflowError, ValueError) as exc:
+        st.error(f"Zahteve ni mogoče izvesti: {exc}")
+        return
+
+    except OSError:
+        st.error("Pri shranjevanju je prišlo do napake.")
+        return
+
+    st.session_state["manager_action_confirmation"] = (
+        manager.username,
+        application.case_id,
+        step,
+    )
+    st.rerun()
 
 
 def render_manager_view(user: User) -> None:
@@ -157,6 +255,26 @@ def render_manager_view(user: User) -> None:
 
     st.title("Pregled kreditnih vlog")
     st.caption(f"Prijavljeni vodja: {user.username}")
+
+    confirmation = st.session_state.pop(
+        "manager_action_confirmation",
+        None,
+    )
+
+    if confirmation is not None:
+        username, case_id, step = confirmation
+
+        if username == user.username:
+            messages = {
+                "manager_review": "Pregled kreditne vloge je zaključen.",
+                "manager_approve": "Kreditna vloga je odobrena.",
+                "manager_reject": "Kreditna vloga je zavrnjena.",
+            }
+
+            st.success(
+                f"{case_id}: {messages.get(step, 'Spremembe so shranjene.')}"
+            )
+
 
     # A different manager must start at the main overview.
     owner_key = "manager_selection_owner"
@@ -178,7 +296,8 @@ def render_manager_view(user: User) -> None:
 
     if selected_case_id in applications_by_id:
         _show_application_details(
-            applications_by_id[selected_case_id]
+            applications_by_id[selected_case_id],
+            user,
         )
         return
 

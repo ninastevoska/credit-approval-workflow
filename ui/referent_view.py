@@ -35,6 +35,7 @@ SUCCESS_MESSAGES = {
     "approve_application": "Kreditna vloga je odobrena.",
     "reject_application": "Kreditna vloga je zavrnjena.",
     "request_completion": "Zahteva za dopolnitev je zabeležena.",
+    "forward_to_manager": "Kreditna vloga je posredovana vodji.",
 }
 
 
@@ -233,6 +234,7 @@ def _show_actions(
         username=referent.username,
     )
 
+    
     if not actions:
         if application.current_step == "completed":
             st.success("Kreditna vloga je zaključena.")
@@ -243,10 +245,20 @@ def _show_actions(
                 "Po oddaji dopolnitve jo boste lahko ponovno pregledali."
             )
 
+        elif application.current_step in {
+            "manager_review",
+            "manager_approve",
+        }:
+            st.info(
+                "Kreditna vloga je bila posredovana vodji. "
+                "Čaka na njegov pregled oziroma odločitev."
+            )
+
         else:
             st.info("Trenutno ni razpoložljivih dejanj.")
 
         return
+
 
     # Use workflow rules rather than hard-coded status checks.
     allowed_steps = {action.step for action in actions}
@@ -357,6 +369,25 @@ def _show_actions(
             _perform_referent_action(
                 application,
                 "reject_application",
+                referent,
+            )
+    if "forward_to_manager" in allowed_steps:
+        st.markdown("#### Posredovanje vodji")
+
+        st.info(
+            "Zaprošeni znesek presega pristojnost referenta. "
+            "Vlogo mora pregledati in o njej odločiti vodja."
+        )
+
+        if st.button(
+            "Posreduj vlogo vodji",
+            type="primary",
+            key=f"forward_to_manager_{application.case_id}",
+            width="stretch",
+        ):
+            _perform_referent_action(
+                application,
+                "forward_to_manager",
                 referent,
             )
 

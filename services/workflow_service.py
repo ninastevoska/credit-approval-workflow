@@ -118,6 +118,34 @@ ADDITIONAL_TRANSITIONS: dict[str, WorkflowTransition] = {
         "notify_rejection",
         ApplicationStatus.DECISION_MADE,
     ),
+    "forward_to_manager": WorkflowTransition(
+        "forward_to_manager",
+        "Posredovanje vloge vodji",
+        UserRole.REFERENT,
+        "manager_review",
+        ApplicationStatus.WITH_MANAGER,
+    ),
+    "manager_review": WorkflowTransition(
+        "manager_review",
+        "Pregled vloge",
+        UserRole.MANAGER,
+        "manager_approve",
+        ApplicationStatus.WITH_MANAGER,
+    ),
+    "manager_approve": WorkflowTransition(
+        "manager_approve",
+        "Odobritev vloge",
+        UserRole.MANAGER,
+        "notify_approval",
+        ApplicationStatus.DECISION_MADE,
+    ),
+    "manager_reject": WorkflowTransition(
+        "manager_reject",
+        "Zavrnitev vloge",
+        UserRole.MANAGER,
+        "notify_rejection",
+        ApplicationStatus.DECISION_MADE,
+    ),
     "notify_rejection": WorkflowTransition(
         "notify_rejection",
         "Obveščanje o zavrnitvi",
@@ -131,7 +159,11 @@ ADDITIONAL_TRANSITIONS: dict[str, WorkflowTransition] = {
 # Alternative actions available at selected process steps.
 ALTERNATIVE_ACTIONS = {
     "assess_creditworthiness": ("request_completion",),
-    "approve_application": ("reject_application",),
+    "approve_application": (
+        "reject_application",
+        "forward_to_manager",
+    ),
+    "manager_approve": ("manager_reject",),
 }
 
 
@@ -149,13 +181,14 @@ def get_transition(step: str) -> WorkflowTransition:
     )
 
 
+
 def validate_transition(
     application: CreditApplication,
     step: str,
     role: UserRole,
     username: str | None = None,
 ) -> WorkflowTransition:
-    """Check that an actor may execute a process activity."""
+    """Validate workflow order, actor identity, and approval authority."""
 
     current = application.current_step
 
@@ -172,18 +205,20 @@ def validate_transition(
 
     transition = get_transition(step)
 
+    # Check the required role.
     if role != transition.required_role:
         raise WorkflowError(
             f"Role '{role.value}' cannot perform '{step}'."
         )
 
-    # Only the assigned referent may process this application.
+    # Only the assigned referent can process the case.
     referent_actions = {
         "review_application",
         "assess_creditworthiness",
         "approve_application",
-        "request_completion",
         "reject_application",
+        "request_completion",
+        "forward_to_manager",
     }
 
     if step in referent_actions:
@@ -192,7 +227,7 @@ def validate_transition(
                 "Only the assigned referent can process this application."
             )
 
-    # A new application may be claimed by one referent only.
+    # A case can only be claimed once.
     if step == "claim_application":
         if not username:
             raise WorkflowError("A referent identity is required.")
@@ -200,20 +235,22 @@ def validate_transition(
         if application.assigned_referent is not None:
             raise WorkflowError("Application is already assigned.")
 
-    # Only the original customer may submit a supplement.
+    # Only the original customer can supplement the case.
     if step == "submit_supplement":
         if not username or username != application.customer_id:
             raise WorkflowError(
                 "Only the application owner can submit a supplement."
             )
 
-    # Direct approval follows the existing credit rules.
-    if step == "approve_application":
+    # Referent decisions are limited by the credit amount.
+    if step in {"approve_application", "reject_application"}:
         if application.requested_amount > REFERENT_APPROVAL_LIMIT:
             raise WorkflowError(
-                "Application exceeds the referent approval limit."
+                "Application exceeds the referent decision limit."
             )
 
+    # Direct referent approval requires rating A or B.
+    if step == "approve_application":
         if application.credit_rating not in {
             CreditRating.A,
             CreditRating.B,
@@ -222,7 +259,30 @@ def validate_transition(
                 "Only applications rated A or B can be approved directly."
             )
 
+    # Cases above the limit must be forwarded to a manager.
+    if step == "forward_to_manager":
+        if application.requested_amount <= REFERENT_APPROVAL_LIMIT:
+            raise WorkflowError(
+                "Application is within the referent decision limit."
+            )
+
+        if application.credit_rating is None:
+            raise WorkflowError(
+                "Creditworthiness must be assessed before forwarding."
+            )
+
+    # Manager decisions require an existing credit rating.
+    if step in {"manager_approve", "manager_reject"}:
+        if not username:
+            raise WorkflowError("A manager identity is required.")
+
+        if application.credit_rating is None:
+            raise WorkflowError(
+                "Creditworthiness must be assessed before a decision."
+            )
+
     return transition
+
 
 
 def get_available_actions(
