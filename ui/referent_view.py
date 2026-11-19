@@ -17,8 +17,10 @@ from models import (
     UserRole,
 )
 from services.application_service import (
+    MANUAL_EVENT_TYPES,
     list_applications,
     perform_action,
+    record_manual_event,
 )
 from services.file_service import FileStorageError, read_pdf
 from services.workflow_service import (
@@ -391,6 +393,84 @@ def _show_actions(
                 referent,
             )
 
+def _show_manual_event_form(
+    application: CreditApplication,
+    referent: User,
+) -> None:
+    """Allow the assigned referent to record manual events."""
+
+    if application.assigned_referent != referent.username:
+        return
+
+    if application.current_step == "completed":
+        return
+
+    st.divider()
+    st.subheader("Ročno evidentiranje dogodkov")
+
+    st.caption(
+        "Zabeležite aktivnosti, ki so bile opravljene "
+        "zunaj aplikacije. Evidentiranje dogodka ne "
+        "spremeni stanja kreditne vloge."
+    )
+
+    custom_option = "Drug dogodek"
+
+    event_type = st.selectbox(
+        "Vrsta dogodka",
+        options=[*MANUAL_EVENT_TYPES, custom_option],
+        key=f"manual_event_type_{application.case_id}",
+    )
+
+    with st.form(f"manual_event_form_{application.case_id}"):
+
+        if event_type == custom_option:
+            custom_name = st.text_input(
+                "Ime dogodka",
+                max_chars=100,
+                placeholder="Vnesite ime dogodka",
+            )
+        else:
+            custom_name = None
+
+        submitted = st.form_submit_button(
+            "Zabeleži dogodek",
+            type="primary",
+            width="stretch",
+        )
+
+    if not submitted:
+        return
+
+    activity = (
+        custom_name
+        if event_type == custom_option
+        else event_type
+    )
+
+    try:
+        record_manual_event(
+            case_id=application.case_id,
+            activity=activity or "",
+            actor=referent,
+        )
+
+    except (WorkflowError, ValueError) as exc:
+        st.error(f"Dogodka ni mogoče zabeležiti: {exc}")
+        return
+
+    except OSError:
+        st.error("Pri shranjevanju dogodka je prišlo do napake.")
+        return
+
+    st.session_state["manual_event_confirmation"] = (
+        referent.username,
+        application.case_id,
+        activity,
+    )
+
+    st.rerun()
+
 
 def render_referent_view(user: User) -> None:
     """Render the referent's application overview or selected case."""
@@ -416,6 +496,21 @@ def render_referent_view(user: User) -> None:
                 "Spremembe so shranjene.",
             )
             st.success(f"{case_id}: {message}")
+    
+    manual_confirmation = st.session_state.pop(
+        "manual_event_confirmation",
+        None,
+    )
+
+    if manual_confirmation is not None:
+        username, case_id, activity = manual_confirmation
+
+        if username == user.username:
+            st.success(
+                f"{case_id}: Dogodek '{activity}' "
+                "je bil uspešno zabeležen."
+            )
+        
 
     applications = list_applications()
 
@@ -468,3 +563,7 @@ def render_referent_view(user: User) -> None:
         _show_pdf(selected)
 
     _show_actions(selected, user)
+    _show_manual_event_form(selected, user)
+
+
+

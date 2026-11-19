@@ -39,6 +39,15 @@ from services.file_service import delete_pdf, save_pdf
 SYSTEM_USER = User(username="sistem", role=UserRole.SYSTEM)
 
 
+MANUAL_EVENT_TYPES = (
+    "Telefonski klic stranki",
+    "Poslana e-pošta stranki",
+    "Prejeta e-pošta stranke",
+    "Posvet s sodelavcem",
+    "Posvet z vodjo",
+)
+
+
 def _application_from_row(row: sqlite3.Row) -> CreditApplication:
     """Convert a database row into a CreditApplication."""
     return CreditApplication(
@@ -398,6 +407,72 @@ def get_application(
         ).fetchone()
 
     return _application_from_row(row) if row is not None else None
+
+
+def record_manual_event(
+    case_id: str,
+    activity: str,
+    actor: User,
+    db_path: Path = DATABASE_PATH,
+) -> ProcessEvent:
+    """Record a manual event without changing the workflow state."""
+
+    activity = activity.strip()
+
+    if not activity:
+        raise ValueError("Ime dogodka ne sme biti prazno.")
+
+    if len(activity) > 100:
+        raise ValueError("Ime dogodka lahko vsebuje največ 100 znakov.")
+
+    if actor.role != UserRole.REFERENT:
+        raise WorkflowError(
+            "Ročne dogodke lahko evidentira samo referent."
+        )
+
+    with get_connection(db_path) as connection:
+        connection.execute("BEGIN IMMEDIATE")
+
+        row = connection.execute(
+            "SELECT * FROM credit_applications WHERE case_id = ?",
+            (case_id,),
+        ).fetchone()
+
+        if row is None:
+            raise ValueError(
+                f"Kreditna vloga '{case_id}' ne obstaja."
+            )
+
+        application = _application_from_row(row)
+
+        if application.assigned_referent != actor.username:
+            raise WorkflowError(
+                "Dogodek lahko evidentira samo dodeljeni referent."
+            )
+
+        if application.current_step == "completed":
+            raise WorkflowError(
+                "Za zaključeno kreditno vlogo ni mogoče dodati dogodka."
+            )
+
+        event = ProcessEvent(
+            case_id=application.case_id,
+            activity=activity,
+            timestamp=datetime.now().astimezone(),
+            resource=actor.username,
+            role=actor.role,
+            source="manual",
+            status=application.status,
+            zaprosen_znesek=application.requested_amount,
+            bonitetna_ocena=application.credit_rating,
+            namen_kredita=application.loan_purpose,
+            pdf_path=application.pdf_path,
+            mesecni_prihodek=application.monthly_income,
+        )
+
+        event_id = append_event(connection, event)
+
+        return replace(event, event_id=event_id)
 
 
 def list_applications(
