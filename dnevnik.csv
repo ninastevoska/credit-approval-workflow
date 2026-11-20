@@ -77,3 +77,253 @@ K-010,Pregled kreditne vloge,2026-11-06T11:45:33+01:00,referent2,referent,system
 K-010,Ocena kreditne sposobnosti,2026-11-06T11:45:38+01:00,referent2,referent,system,ocenjena,15000,B,prenova_stanovanja,data/uploads/d6b31d8755954f09b2120b6570cd8e84.pdf,2100
 K-010,Odobritev vloge,2026-11-06T11:45:39+01:00,referent2,referent,system,odlocitev_sprejeta,15000,B,prenova_stanovanja,data/uploads/d6b31d8755954f09b2120b6570cd8e84.pdf,2100
 K-010,Obveščanje o odobritvi,2026-11-06T11:45:39+01:00,sistem,sistem,system,odobrena,15000,B,prenova_stanovanja,data/uploads/d6b31d8755954f09b2120b6570cd8e84.pdf,2100
+K-011,Izpolnitev in oddaja kreditne vloge,2026-11-10T15:55:10+01:00,nina.s,stranka,system,oddana,15000,,prenova_stanovanja,data/uploads/dd89b508704b4ccfbb0f6b5e165e249e.pdf,2100
+K-011,Samodejno preverjanje vloge,2026-11-10T15:55:10+01:00,sistem,sistem,system,preverjena,15000,,prenova_stanovanja,data/uploads/dd89b508704b4ccfbb0f6b5e165e249e.pdf,2100
+K-011,Prevzem kreditne vloge,2026-11-10T15:55:43+01:00,referent1,referent,system,v_pregledu,15000,,prenova_stanovanja,data/uploads/dd89b508704b4ccfbb0f6b5e165e249e.pdf,2100
+K-011,Pregled kreditne vloge,2026-11-10T15:55:49+01:00,referent1,referent,system,v_pregledu,15000,,prenova_stanovanja,data/uploads/dd89b508704b4ccfbb0f6b5e165e249e.pdf,2100
+K-011,Priprava zahteve za dopolnitev vloge,2026-11-10T15:55:53+01:00,referent1,referent,system,v_dopolnitvi,15000,,prenova_stanovanja,data/uploads/dd89b508704b4ccfbb0f6b5e165e249e.pdf,2100
+K-011,Pošiljanje zahteve za dopolnitev,2026-11-10T15:55:53+01:00,sistem,sistem,system,v_dopolnitvi,15000,,prenova_stanovanja,data/uploads/dd89b508704b4ccfbb0f6b5e165e249e.pdf,2100
+K-011,Dopolnitev in oddaja kreditne vloge,2026-11-10T15:56:22+01:00,nina.s,stranka,system,dopolnjena,15000,,prenova_stanovanja,data/uploads/daeb4aab4e6b4298acc72616ba7104a8.pdf,2100
+K-011,Pregled kreditne vloge,2026-11-10T15:56:41+01:00,referent1,referent,system,v_pregledu,15000,,prenova_stanovanja,data/uploads/daeb4aab4e6b4298acc72616ba7104a8.pdf,2100
+K-011,Ocena kreditne sposobnosti,2026-11-10T15:56:43+01:00,referent1,referent,system,ocenjena,15000,A,prenova_stanovanja,data/uploads/daeb4aab4e6b4298acc72616ba7104a8.pdf,2100
+K-011,Odobritev vloge,2026-11-10T15:56:47+01:00,referent1,referent,system,odlocitev_sprejeta,15000,A,prenova_stanovanja,data/uploads/daeb4aab4e6b4298acc72616ba7104a8.pdf,2100
+K-011,Obveščanje o odobritvi,2026-11-10T15:56:47+01:00,sistem,sistem,system,odobrena,15000,A,prenova_stanovanja,data/uploads/daeb4aab4e6b4298acc72616ba7104a8.pdf,2100
+K-012,Izpolnitev in oddaja kreditne vloge,2026-11-10T17:13:35+01:00,nina.s,stranka,system,oddana,15000,,prenova_stanovanja,data/uploads/8aa4474b487349dca59af66ffc851d90.pdf,2100
+K-012,Samodejno preverjanje vloge,2026-11-10T17:13:35+01:00,sistem,sistem,system,preverjena,15000,,prenova_stanovanja,data/uploads/8aa4474b487349dca59af66ffc851d90.pdf,2100
+K-012,Prevzem kreditne vloge,2026-11-10T17:13:55+01:00,referent1,referent,system,v_pregledu,15000,,prenova_stanovanja,data/uploads/8aa4474b487349dca59af66ffc851d90.pdf,2100
+K-012,Pregled kreditne vloge,2026-11-10T17:14:00+01:00,referent1,referent,system,v_pregledu,15000,,prenova_stanovanja,data/uploads/8aa4474b487349dca59af66ffc851d90.pdf,2100
+K-012,Priprava zahteve za dopolnitev vloge,2026-11-10T17:14:05+01:00,referent1,referent,system,v_dopolnitvi,15000,,prenova_stanovanja,data/uploads/8aa4474b487349dca59af66ffc851d90.pdf,2100
+K-012,Pošiljanje zahteve za dopolnitev,2026-11-10T17:14:05+01:00,sistem,sistem,system,v_dopolnitvi,15000,,prenova_stanovanja,data/uploads/8aa4474b487349dca59af66ffc851d90.pdf,2100
+K-012,Dopolnitev in oddaja kreditne vloge,2026-11-20T10:53:04+01:00,nina.s,stranka,system,dopolnjena,15000,,prenova_stanovanja,data/uploads/a7ef39af8b3f4059a6c53c874369d2da.pdf,2100
+K-012,Pregled kreditne vloge,2026-11-20T10:53:43+01:00,referent1,referent,system,v_pregledu,15000,,prenova_stanovanja,data/uploads/a7ef39af8b3f4059a6c53c874369d2da.pdf,2100
+K-012,Ocena kreditne sposobnosti,2026-11-20T10:53:45+01:00,referent1,referent,system,ocenjena,15000,A,prenova_stanovanja,data/uploads/a7ef39af8b3f4059a6c53c874369d2da.pdf,2100
+K-012,Odobritev vloge,2026-11-20T10:53:47+01:00,referent1,referent,system,odlocitev_sprejeta,15000,A,prenova_stanovanja,data/uploads/a7ef39af8b3f4059a6c53c874369d2da.pdf,2100
+K-012,Obveščanje o odobritvi,2026-11-20T10:53:47+01:00,sistem,sistem,system,odobrena,15000,A,prenova_stanovanja,data/uploads/a7ef39af8b3f4059a6c53c874369d2da.pdf,2100
+K-013,Izpolnitev in oddaja kreditne vloge,2026-11-19T23:22:32+01:00,nina.s,stranka,system,oddana,25000,,prenova_stanovanja,data/uploads/99efc916832b4b9cbf8a0f6a4f19a29d.pdf,10000
+K-013,Samodejno preverjanje vloge,2026-11-19T23:22:32+01:00,sistem,sistem,system,preverjena,25000,,prenova_stanovanja,data/uploads/99efc916832b4b9cbf8a0f6a4f19a29d.pdf,10000
+K-013,Prevzem kreditne vloge,2026-11-19T23:22:46+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/99efc916832b4b9cbf8a0f6a4f19a29d.pdf,10000
+K-013,Pregled kreditne vloge,2026-11-19T23:22:53+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/99efc916832b4b9cbf8a0f6a4f19a29d.pdf,10000
+K-013,Ocena kreditne sposobnosti,2026-11-19T23:23:01+01:00,referent1,referent,system,ocenjena,25000,A,prenova_stanovanja,data/uploads/99efc916832b4b9cbf8a0f6a4f19a29d.pdf,10000
+K-013,Posredovanje vloge vodji,2026-11-20T10:54:01+01:00,referent1,referent,system,pri_vodji,25000,A,prenova_stanovanja,data/uploads/99efc916832b4b9cbf8a0f6a4f19a29d.pdf,10000
+K-013,Pregled vloge,2026-11-20T10:54:34+01:00,vodja1,vodja,system,pri_vodji,25000,A,prenova_stanovanja,data/uploads/99efc916832b4b9cbf8a0f6a4f19a29d.pdf,10000
+K-013,Odobritev vloge,2026-11-20T10:54:36+01:00,vodja1,vodja,system,odlocitev_sprejeta,25000,A,prenova_stanovanja,data/uploads/99efc916832b4b9cbf8a0f6a4f19a29d.pdf,10000
+K-013,Obveščanje o odobritvi,2026-11-20T10:54:36+01:00,sistem,sistem,system,odobrena,25000,A,prenova_stanovanja,data/uploads/99efc916832b4b9cbf8a0f6a4f19a29d.pdf,10000
+K-014,Izpolnitev in oddaja kreditne vloge,2026-11-19T23:25:18+01:00,nina.s,stranka,system,oddana,25000,,prenova_stanovanja,data/uploads/eb15e35f57124ee3894b08ff66a9a813.pdf,10000
+K-014,Samodejno preverjanje vloge,2026-11-19T23:25:18+01:00,sistem,sistem,system,preverjena,25000,,prenova_stanovanja,data/uploads/eb15e35f57124ee3894b08ff66a9a813.pdf,10000
+K-014,Prevzem kreditne vloge,2026-11-19T23:25:34+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/eb15e35f57124ee3894b08ff66a9a813.pdf,10000
+K-014,Pregled kreditne vloge,2026-11-19T23:25:37+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/eb15e35f57124ee3894b08ff66a9a813.pdf,10000
+K-014,Ocena kreditne sposobnosti,2026-11-19T23:25:40+01:00,referent1,referent,system,ocenjena,25000,A,prenova_stanovanja,data/uploads/eb15e35f57124ee3894b08ff66a9a813.pdf,10000
+K-014,Posredovanje vloge vodji,2026-11-19T23:31:09+01:00,referent1,referent,system,pri_vodji,25000,A,prenova_stanovanja,data/uploads/eb15e35f57124ee3894b08ff66a9a813.pdf,10000
+K-014,Pregled vloge,2026-11-19T23:52:17+01:00,vodja1,vodja,system,pri_vodji,25000,A,prenova_stanovanja,data/uploads/eb15e35f57124ee3894b08ff66a9a813.pdf,10000
+K-014,Odobritev vloge,2026-11-19T23:52:20+01:00,vodja1,vodja,system,odlocitev_sprejeta,25000,A,prenova_stanovanja,data/uploads/eb15e35f57124ee3894b08ff66a9a813.pdf,10000
+K-014,Obveščanje o odobritvi,2026-11-19T23:52:20+01:00,sistem,sistem,system,odobrena,25000,A,prenova_stanovanja,data/uploads/eb15e35f57124ee3894b08ff66a9a813.pdf,10000
+K-015,Izpolnitev in oddaja kreditne vloge,2026-11-19T23:27:41+01:00,nina.s,stranka,system,oddana,25000,,prenova_stanovanja,data/uploads/4c606e0c17d54333a01be4e5b6812fb4.pdf,10000
+K-015,Samodejno preverjanje vloge,2026-11-19T23:27:41+01:00,sistem,sistem,system,preverjena,25000,,prenova_stanovanja,data/uploads/4c606e0c17d54333a01be4e5b6812fb4.pdf,10000
+K-015,Prevzem kreditne vloge,2026-11-19T23:28:00+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/4c606e0c17d54333a01be4e5b6812fb4.pdf,10000
+K-015,Pregled kreditne vloge,2026-11-19T23:28:02+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/4c606e0c17d54333a01be4e5b6812fb4.pdf,10000
+K-015,Ocena kreditne sposobnosti,2026-11-19T23:28:05+01:00,referent1,referent,system,ocenjena,25000,A,prenova_stanovanja,data/uploads/4c606e0c17d54333a01be4e5b6812fb4.pdf,10000
+K-015,Posredovanje vloge vodji,2026-11-20T10:55:13+01:00,referent1,referent,system,pri_vodji,25000,A,prenova_stanovanja,data/uploads/4c606e0c17d54333a01be4e5b6812fb4.pdf,10000
+K-015,Pregled vloge,2026-11-20T10:55:27+01:00,vodja1,vodja,system,pri_vodji,25000,A,prenova_stanovanja,data/uploads/4c606e0c17d54333a01be4e5b6812fb4.pdf,10000
+K-015,Odobritev vloge,2026-11-20T10:55:28+01:00,vodja1,vodja,system,odlocitev_sprejeta,25000,A,prenova_stanovanja,data/uploads/4c606e0c17d54333a01be4e5b6812fb4.pdf,10000
+K-015,Obveščanje o odobritvi,2026-11-20T10:55:28+01:00,sistem,sistem,system,odobrena,25000,A,prenova_stanovanja,data/uploads/4c606e0c17d54333a01be4e5b6812fb4.pdf,10000
+K-016,Izpolnitev in oddaja kreditne vloge,2026-11-19T23:52:56+01:00,stranka1,stranka,system,oddana,25000,,prenova_stanovanja,data/uploads/4f344f6767b14b97ae35c62d77dae2db.pdf,10000
+K-016,Samodejno preverjanje vloge,2026-11-19T23:52:56+01:00,sistem,sistem,system,preverjena,25000,,prenova_stanovanja,data/uploads/4f344f6767b14b97ae35c62d77dae2db.pdf,10000
+K-016,Prevzem kreditne vloge,2026-11-19T23:53:12+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/4f344f6767b14b97ae35c62d77dae2db.pdf,10000
+K-016,Pregled kreditne vloge,2026-11-19T23:53:14+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/4f344f6767b14b97ae35c62d77dae2db.pdf,10000
+K-016,Ocena kreditne sposobnosti,2026-11-19T23:53:17+01:00,referent1,referent,system,ocenjena,25000,A,prenova_stanovanja,data/uploads/4f344f6767b14b97ae35c62d77dae2db.pdf,10000
+K-016,Posredovanje vloge vodji,2026-11-19T23:53:19+01:00,referent1,referent,system,pri_vodji,25000,A,prenova_stanovanja,data/uploads/4f344f6767b14b97ae35c62d77dae2db.pdf,10000
+K-016,Pregled vloge,2026-11-19T23:53:34+01:00,vodja1,vodja,system,pri_vodji,25000,A,prenova_stanovanja,data/uploads/4f344f6767b14b97ae35c62d77dae2db.pdf,10000
+K-016,Zavrnitev vloge,2026-11-19T23:53:36+01:00,vodja1,vodja,system,odlocitev_sprejeta,25000,A,prenova_stanovanja,data/uploads/4f344f6767b14b97ae35c62d77dae2db.pdf,10000
+K-016,Obveščanje o zavrnitvi,2026-11-19T23:53:36+01:00,sistem,sistem,system,zavrnjena,25000,A,prenova_stanovanja,data/uploads/4f344f6767b14b97ae35c62d77dae2db.pdf,10000
+K-017,Izpolnitev in oddaja kreditne vloge,2026-11-20T00:02:39+01:00,jana.s,stranka,system,oddana,25000,,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-017,Samodejno preverjanje vloge,2026-11-20T00:02:39+01:00,sistem,sistem,system,preverjena,25000,,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-017,Prevzem kreditne vloge,2026-11-20T00:03:00+01:00,referent2,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-017,Telefonski klic stranki,2026-11-20T00:03:14+01:00,referent2,referent,manual,v_pregledu,25000,,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-017,Preverjanje dodatnih informacij,2026-11-20T00:04:19+01:00,referent2,referent,manual,v_pregledu,25000,,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-017,Pregled kreditne vloge,2026-11-20T00:04:29+01:00,referent2,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-017,Ocena kreditne sposobnosti,2026-11-20T00:04:36+01:00,referent2,referent,system,ocenjena,25000,B,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-017,Posredovanje vloge vodji,2026-11-20T00:04:41+01:00,referent2,referent,system,pri_vodji,25000,B,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-017,Pregled vloge,2026-11-20T00:05:06+01:00,vodja1,vodja,system,pri_vodji,25000,B,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-017,Odobritev vloge,2026-11-20T00:05:09+01:00,vodja1,vodja,system,odlocitev_sprejeta,25000,B,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-017,Obveščanje o odobritvi,2026-11-20T00:05:09+01:00,sistem,sistem,system,odobrena,25000,B,prenova_stanovanja,data/uploads/ca6738224fbe4ba682752e8db7dfeda2.pdf,10000
+K-018,Izpolnitev in oddaja kreditne vloge,2026-11-20T00:35:38+01:00,petra.z,stranka,system,oddana,25000,,prenova_stanovanja,data/uploads/fe2e139e50524d8db9da0bba99aa205f.pdf,10000
+K-018,Samodejno preverjanje vloge,2026-11-20T00:35:38+01:00,sistem,sistem,system,preverjena,25000,,prenova_stanovanja,data/uploads/fe2e139e50524d8db9da0bba99aa205f.pdf,10000
+K-018,Prevzem kreditne vloge,2026-11-20T00:35:58+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/fe2e139e50524d8db9da0bba99aa205f.pdf,10000
+K-018,Pregled kreditne vloge,2026-11-20T00:36:03+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/fe2e139e50524d8db9da0bba99aa205f.pdf,10000
+K-018,Ocena kreditne sposobnosti,2026-11-20T00:36:05+01:00,referent1,referent,system,ocenjena,25000,A,prenova_stanovanja,data/uploads/fe2e139e50524d8db9da0bba99aa205f.pdf,10000
+K-018,Odobritev vloge,2026-11-20T00:36:10+01:00,referent1,referent,system,odlocitev_sprejeta,25000,A,prenova_stanovanja,data/uploads/fe2e139e50524d8db9da0bba99aa205f.pdf,10000
+K-018,Obveščanje o odobritvi,2026-11-20T00:36:10+01:00,sistem,sistem,system,odobrena,25000,A,prenova_stanovanja,data/uploads/fe2e139e50524d8db9da0bba99aa205f.pdf,10000
+K-019,Izpolnitev in oddaja kreditne vloge,2026-11-20T00:40:04+01:00,ana.k,stranka,system,oddana,25000,,prenova_stanovanja,data/uploads/0b9b3da8d4f041b1ac95930529713eaf.pdf,10000
+K-019,Samodejno preverjanje vloge,2026-11-20T00:40:04+01:00,sistem,sistem,system,preverjena,25000,,prenova_stanovanja,data/uploads/0b9b3da8d4f041b1ac95930529713eaf.pdf,10000
+K-019,Prevzem kreditne vloge,2026-11-20T00:40:31+01:00,referent2,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/0b9b3da8d4f041b1ac95930529713eaf.pdf,10000
+K-019,Ocena kreditne sposobnosti,2026-11-20T00:40:46+01:00,referent2,referent,system,ocenjena,25000,A,prenova_stanovanja,data/uploads/0b9b3da8d4f041b1ac95930529713eaf.pdf,10000
+K-019,Odobritev vloge,2026-11-20T00:40:50+01:00,referent2,referent,system,odlocitev_sprejeta,25000,A,prenova_stanovanja,data/uploads/0b9b3da8d4f041b1ac95930529713eaf.pdf,10000
+K-019,Obveščanje o odobritvi,2026-11-20T00:40:50+01:00,sistem,sistem,system,odobrena,25000,A,prenova_stanovanja,data/uploads/0b9b3da8d4f041b1ac95930529713eaf.pdf,10000
+K-020,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:12+01:00,iup06_20_cases_v1_customer_01,stranka,system,oddana,5000,,prenova_stanovanja,data/uploads/b86f48a4a8fb4e1e815ff67905a93acb.pdf,1800
+K-020,Samodejno preverjanje vloge,2026-11-20T11:05:12+01:00,sistem,sistem,system,preverjena,5000,,prenova_stanovanja,data/uploads/b86f48a4a8fb4e1e815ff67905a93acb.pdf,1800
+K-020,Prevzem kreditne vloge,2026-11-20T11:05:12+01:00,referent1,referent,system,v_pregledu,5000,,prenova_stanovanja,data/uploads/b86f48a4a8fb4e1e815ff67905a93acb.pdf,1800
+K-020,Pregled kreditne vloge,2026-11-20T11:05:12+01:00,referent1,referent,system,v_pregledu,5000,,prenova_stanovanja,data/uploads/b86f48a4a8fb4e1e815ff67905a93acb.pdf,1800
+K-020,Ocena kreditne sposobnosti,2026-11-20T11:05:12+01:00,referent1,referent,system,ocenjena,5000,A,prenova_stanovanja,data/uploads/b86f48a4a8fb4e1e815ff67905a93acb.pdf,1800
+K-020,Odobritev vloge,2026-11-20T11:05:12+01:00,referent1,referent,system,odlocitev_sprejeta,5000,A,prenova_stanovanja,data/uploads/b86f48a4a8fb4e1e815ff67905a93acb.pdf,1800
+K-020,Obveščanje o odobritvi,2026-11-20T11:05:12+01:00,sistem,sistem,system,odobrena,5000,A,prenova_stanovanja,data/uploads/b86f48a4a8fb4e1e815ff67905a93acb.pdf,1800
+K-021,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:12+01:00,iup06_20_cases_v1_customer_02,stranka,system,oddana,7500,,prenova_stanovanja,data/uploads/b8cdf3c8c8884da999a02c7d1de0ace3.pdf,2000
+K-021,Samodejno preverjanje vloge,2026-11-20T11:05:12+01:00,sistem,sistem,system,preverjena,7500,,prenova_stanovanja,data/uploads/b8cdf3c8c8884da999a02c7d1de0ace3.pdf,2000
+K-021,Prevzem kreditne vloge,2026-11-20T11:05:12+01:00,referent1,referent,system,v_pregledu,7500,,prenova_stanovanja,data/uploads/b8cdf3c8c8884da999a02c7d1de0ace3.pdf,2000
+K-021,Pregled kreditne vloge,2026-11-20T11:05:12+01:00,referent1,referent,system,v_pregledu,7500,,prenova_stanovanja,data/uploads/b8cdf3c8c8884da999a02c7d1de0ace3.pdf,2000
+K-021,Ocena kreditne sposobnosti,2026-11-20T11:05:12+01:00,referent1,referent,system,ocenjena,7500,B,prenova_stanovanja,data/uploads/b8cdf3c8c8884da999a02c7d1de0ace3.pdf,2000
+K-021,Odobritev vloge,2026-11-20T11:05:12+01:00,referent1,referent,system,odlocitev_sprejeta,7500,B,prenova_stanovanja,data/uploads/b8cdf3c8c8884da999a02c7d1de0ace3.pdf,2000
+K-021,Obveščanje o odobritvi,2026-11-20T11:05:12+01:00,sistem,sistem,system,odobrena,7500,B,prenova_stanovanja,data/uploads/b8cdf3c8c8884da999a02c7d1de0ace3.pdf,2000
+K-022,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:12+01:00,iup06_20_cases_v1_customer_03,stranka,system,oddana,10000,,prenova_stanovanja,data/uploads/4ae7932c91c544618341b4e2dbc059cb.pdf,2300
+K-022,Samodejno preverjanje vloge,2026-11-20T11:05:12+01:00,sistem,sistem,system,preverjena,10000,,prenova_stanovanja,data/uploads/4ae7932c91c544618341b4e2dbc059cb.pdf,2300
+K-022,Prevzem kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,10000,,prenova_stanovanja,data/uploads/4ae7932c91c544618341b4e2dbc059cb.pdf,2300
+K-022,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,10000,,prenova_stanovanja,data/uploads/4ae7932c91c544618341b4e2dbc059cb.pdf,2300
+K-022,Ocena kreditne sposobnosti,2026-11-20T11:05:13+01:00,referent1,referent,system,ocenjena,10000,A,prenova_stanovanja,data/uploads/4ae7932c91c544618341b4e2dbc059cb.pdf,2300
+K-022,Odobritev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,odlocitev_sprejeta,10000,A,prenova_stanovanja,data/uploads/4ae7932c91c544618341b4e2dbc059cb.pdf,2300
+K-022,Obveščanje o odobritvi,2026-11-20T11:05:13+01:00,sistem,sistem,system,odobrena,10000,A,prenova_stanovanja,data/uploads/4ae7932c91c544618341b4e2dbc059cb.pdf,2300
+K-023,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_04,stranka,system,oddana,12000,,prenova_stanovanja,data/uploads/5bd90bc7089a42b486bfc469bd004de4.pdf,2400
+K-023,Samodejno preverjanje vloge,2026-11-20T11:05:13+01:00,sistem,sistem,system,preverjena,12000,,prenova_stanovanja,data/uploads/5bd90bc7089a42b486bfc469bd004de4.pdf,2400
+K-023,Prevzem kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,12000,,prenova_stanovanja,data/uploads/5bd90bc7089a42b486bfc469bd004de4.pdf,2400
+K-023,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,12000,,prenova_stanovanja,data/uploads/5bd90bc7089a42b486bfc469bd004de4.pdf,2400
+K-023,Ocena kreditne sposobnosti,2026-11-20T11:05:13+01:00,referent1,referent,system,ocenjena,12000,B,prenova_stanovanja,data/uploads/5bd90bc7089a42b486bfc469bd004de4.pdf,2400
+K-023,Odobritev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,odlocitev_sprejeta,12000,B,prenova_stanovanja,data/uploads/5bd90bc7089a42b486bfc469bd004de4.pdf,2400
+K-023,Obveščanje o odobritvi,2026-11-20T11:05:13+01:00,sistem,sistem,system,odobrena,12000,B,prenova_stanovanja,data/uploads/5bd90bc7089a42b486bfc469bd004de4.pdf,2400
+K-024,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_05,stranka,system,oddana,15000,,prenova_stanovanja,data/uploads/00016c50a64f435496418b3726da7eed.pdf,2800
+K-024,Samodejno preverjanje vloge,2026-11-20T11:05:13+01:00,sistem,sistem,system,preverjena,15000,,prenova_stanovanja,data/uploads/00016c50a64f435496418b3726da7eed.pdf,2800
+K-024,Prevzem kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,15000,,prenova_stanovanja,data/uploads/00016c50a64f435496418b3726da7eed.pdf,2800
+K-024,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,15000,,prenova_stanovanja,data/uploads/00016c50a64f435496418b3726da7eed.pdf,2800
+K-024,Ocena kreditne sposobnosti,2026-11-20T11:05:13+01:00,referent1,referent,system,ocenjena,15000,A,prenova_stanovanja,data/uploads/00016c50a64f435496418b3726da7eed.pdf,2800
+K-024,Posvet s sodelavcem,2026-11-20T11:05:13+01:00,referent1,referent,manual,ocenjena,15000,A,prenova_stanovanja,data/uploads/00016c50a64f435496418b3726da7eed.pdf,2800
+K-024,Odobritev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,odlocitev_sprejeta,15000,A,prenova_stanovanja,data/uploads/00016c50a64f435496418b3726da7eed.pdf,2800
+K-024,Obveščanje o odobritvi,2026-11-20T11:05:13+01:00,sistem,sistem,system,odobrena,15000,A,prenova_stanovanja,data/uploads/00016c50a64f435496418b3726da7eed.pdf,2800
+K-025,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_06,stranka,system,oddana,18000,,prenova_stanovanja,data/uploads/be939586cb7941419f6f3cef26766341.pdf,3100
+K-025,Samodejno preverjanje vloge,2026-11-20T11:05:13+01:00,sistem,sistem,system,preverjena,18000,,prenova_stanovanja,data/uploads/be939586cb7941419f6f3cef26766341.pdf,3100
+K-025,Prevzem kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,18000,,prenova_stanovanja,data/uploads/be939586cb7941419f6f3cef26766341.pdf,3100
+K-025,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,18000,,prenova_stanovanja,data/uploads/be939586cb7941419f6f3cef26766341.pdf,3100
+K-025,Ocena kreditne sposobnosti,2026-11-20T11:05:13+01:00,referent1,referent,system,ocenjena,18000,B,prenova_stanovanja,data/uploads/be939586cb7941419f6f3cef26766341.pdf,3100
+K-025,Odobritev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,odlocitev_sprejeta,18000,B,prenova_stanovanja,data/uploads/be939586cb7941419f6f3cef26766341.pdf,3100
+K-025,Obveščanje o odobritvi,2026-11-20T11:05:13+01:00,sistem,sistem,system,odobrena,18000,B,prenova_stanovanja,data/uploads/be939586cb7941419f6f3cef26766341.pdf,3100
+K-026,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_07,stranka,system,oddana,20000,,prenova_stanovanja,data/uploads/b4534cb6c81f40d9b9f8657e5517ea8b.pdf,3500
+K-026,Samodejno preverjanje vloge,2026-11-20T11:05:13+01:00,sistem,sistem,system,preverjena,20000,,prenova_stanovanja,data/uploads/b4534cb6c81f40d9b9f8657e5517ea8b.pdf,3500
+K-026,Prevzem kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,20000,,prenova_stanovanja,data/uploads/b4534cb6c81f40d9b9f8657e5517ea8b.pdf,3500
+K-026,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,20000,,prenova_stanovanja,data/uploads/b4534cb6c81f40d9b9f8657e5517ea8b.pdf,3500
+K-026,Ocena kreditne sposobnosti,2026-11-20T11:05:13+01:00,referent1,referent,system,ocenjena,20000,A,prenova_stanovanja,data/uploads/b4534cb6c81f40d9b9f8657e5517ea8b.pdf,3500
+K-026,Odobritev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,odlocitev_sprejeta,20000,A,prenova_stanovanja,data/uploads/b4534cb6c81f40d9b9f8657e5517ea8b.pdf,3500
+K-026,Obveščanje o odobritvi,2026-11-20T11:05:13+01:00,sistem,sistem,system,odobrena,20000,A,prenova_stanovanja,data/uploads/b4534cb6c81f40d9b9f8657e5517ea8b.pdf,3500
+K-027,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_08,stranka,system,oddana,6000,,prenova_stanovanja,data/uploads/d0272d8a4d8d4e41899f9616e02b6a69.pdf,1900
+K-027,Samodejno preverjanje vloge,2026-11-20T11:05:13+01:00,sistem,sistem,system,preverjena,6000,,prenova_stanovanja,data/uploads/d0272d8a4d8d4e41899f9616e02b6a69.pdf,1900
+K-027,Prevzem kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,6000,,prenova_stanovanja,data/uploads/d0272d8a4d8d4e41899f9616e02b6a69.pdf,1900
+K-027,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,6000,,prenova_stanovanja,data/uploads/d0272d8a4d8d4e41899f9616e02b6a69.pdf,1900
+K-027,Ocena kreditne sposobnosti,2026-11-20T11:05:13+01:00,referent1,referent,system,ocenjena,6000,A,prenova_stanovanja,data/uploads/d0272d8a4d8d4e41899f9616e02b6a69.pdf,1900
+K-027,Odobritev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,odlocitev_sprejeta,6000,A,prenova_stanovanja,data/uploads/d0272d8a4d8d4e41899f9616e02b6a69.pdf,1900
+K-027,Obveščanje o odobritvi,2026-11-20T11:05:13+01:00,sistem,sistem,system,odobrena,6000,A,prenova_stanovanja,data/uploads/d0272d8a4d8d4e41899f9616e02b6a69.pdf,1900
+K-028,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_09,stranka,system,oddana,9000,,prenova_stanovanja,data/uploads/7fe6a891e4cc4b559bbc467a440cf47f.pdf,2100
+K-028,Samodejno preverjanje vloge,2026-11-20T11:05:13+01:00,sistem,sistem,system,preverjena,9000,,prenova_stanovanja,data/uploads/7fe6a891e4cc4b559bbc467a440cf47f.pdf,2100
+K-028,Prevzem kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,9000,,prenova_stanovanja,data/uploads/7fe6a891e4cc4b559bbc467a440cf47f.pdf,2100
+K-028,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,9000,,prenova_stanovanja,data/uploads/7fe6a891e4cc4b559bbc467a440cf47f.pdf,2100
+K-028,Ocena kreditne sposobnosti,2026-11-20T11:05:13+01:00,referent1,referent,system,ocenjena,9000,B,prenova_stanovanja,data/uploads/7fe6a891e4cc4b559bbc467a440cf47f.pdf,2100
+K-028,Odobritev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,odlocitev_sprejeta,9000,B,prenova_stanovanja,data/uploads/7fe6a891e4cc4b559bbc467a440cf47f.pdf,2100
+K-028,Obveščanje o odobritvi,2026-11-20T11:05:13+01:00,sistem,sistem,system,odobrena,9000,B,prenova_stanovanja,data/uploads/7fe6a891e4cc4b559bbc467a440cf47f.pdf,2100
+K-029,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_10,stranka,system,oddana,14000,,prenova_stanovanja,data/uploads/8f0429ac524e4cf4856d5c35d5e1f10e.pdf,2700
+K-029,Samodejno preverjanje vloge,2026-11-20T11:05:13+01:00,sistem,sistem,system,preverjena,14000,,prenova_stanovanja,data/uploads/8f0429ac524e4cf4856d5c35d5e1f10e.pdf,2700
+K-029,Prevzem kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,14000,,prenova_stanovanja,data/uploads/8f0429ac524e4cf4856d5c35d5e1f10e.pdf,2700
+K-029,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,14000,,prenova_stanovanja,data/uploads/8f0429ac524e4cf4856d5c35d5e1f10e.pdf,2700
+K-029,Ocena kreditne sposobnosti,2026-11-20T11:05:13+01:00,referent1,referent,system,ocenjena,14000,A,prenova_stanovanja,data/uploads/8f0429ac524e4cf4856d5c35d5e1f10e.pdf,2700
+K-029,Odobritev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,odlocitev_sprejeta,14000,A,prenova_stanovanja,data/uploads/8f0429ac524e4cf4856d5c35d5e1f10e.pdf,2700
+K-029,Obveščanje o odobritvi,2026-11-20T11:05:13+01:00,sistem,sistem,system,odobrena,14000,A,prenova_stanovanja,data/uploads/8f0429ac524e4cf4856d5c35d5e1f10e.pdf,2700
+K-030,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_11,stranka,system,oddana,8000,,nakup_vozila,data/uploads/f9146f603af045d2af9d7be6cb95819c.pdf,2000
+K-030,Samodejno preverjanje vloge,2026-11-20T11:05:13+01:00,sistem,sistem,system,preverjena,8000,,nakup_vozila,data/uploads/f9146f603af045d2af9d7be6cb95819c.pdf,2000
+K-030,Prevzem kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,8000,,nakup_vozila,data/uploads/f9146f603af045d2af9d7be6cb95819c.pdf,2000
+K-030,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,8000,,nakup_vozila,data/uploads/f9146f603af045d2af9d7be6cb95819c.pdf,2000
+K-030,Priprava zahteve za dopolnitev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_dopolnitvi,8000,,nakup_vozila,data/uploads/f9146f603af045d2af9d7be6cb95819c.pdf,2000
+K-030,Pošiljanje zahteve za dopolnitev,2026-11-20T11:05:13+01:00,sistem,sistem,system,v_dopolnitvi,8000,,nakup_vozila,data/uploads/f9146f603af045d2af9d7be6cb95819c.pdf,2000
+K-030,Dopolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_11,stranka,system,dopolnjena,8000,,prenova_stanovanja,data/uploads/5f8e17160ab4441abd8fb84ca11dac68.pdf,2000
+K-030,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,8000,,prenova_stanovanja,data/uploads/5f8e17160ab4441abd8fb84ca11dac68.pdf,2000
+K-030,Ocena kreditne sposobnosti,2026-11-20T11:05:13+01:00,referent1,referent,system,ocenjena,8000,A,prenova_stanovanja,data/uploads/5f8e17160ab4441abd8fb84ca11dac68.pdf,2000
+K-030,Telefonski klic stranki,2026-11-20T11:05:13+01:00,referent1,referent,manual,ocenjena,8000,A,prenova_stanovanja,data/uploads/5f8e17160ab4441abd8fb84ca11dac68.pdf,2000
+K-030,Odobritev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,odlocitev_sprejeta,8000,A,prenova_stanovanja,data/uploads/5f8e17160ab4441abd8fb84ca11dac68.pdf,2000
+K-030,Obveščanje o odobritvi,2026-11-20T11:05:13+01:00,sistem,sistem,system,odobrena,8000,A,prenova_stanovanja,data/uploads/5f8e17160ab4441abd8fb84ca11dac68.pdf,2000
+K-031,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_12,stranka,system,oddana,11000,,nakup_vozila,data/uploads/280d8951943d4916ac903933f7b71d07.pdf,2400
+K-031,Samodejno preverjanje vloge,2026-11-20T11:05:13+01:00,sistem,sistem,system,preverjena,11000,,nakup_vozila,data/uploads/280d8951943d4916ac903933f7b71d07.pdf,2400
+K-031,Prevzem kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,11000,,nakup_vozila,data/uploads/280d8951943d4916ac903933f7b71d07.pdf,2400
+K-031,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,11000,,nakup_vozila,data/uploads/280d8951943d4916ac903933f7b71d07.pdf,2400
+K-031,Priprava zahteve za dopolnitev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_dopolnitvi,11000,,nakup_vozila,data/uploads/280d8951943d4916ac903933f7b71d07.pdf,2400
+K-031,Pošiljanje zahteve za dopolnitev,2026-11-20T11:05:13+01:00,sistem,sistem,system,v_dopolnitvi,11000,,nakup_vozila,data/uploads/280d8951943d4916ac903933f7b71d07.pdf,2400
+K-031,Dopolnitev in oddaja kreditne vloge,2026-11-20T11:05:13+01:00,iup06_20_cases_v1_customer_12,stranka,system,dopolnjena,11000,,prenova_stanovanja,data/uploads/5a92a99aa9b04db1b5c6a2001c8a044e.pdf,2400
+K-031,Pregled kreditne vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,v_pregledu,11000,,prenova_stanovanja,data/uploads/5a92a99aa9b04db1b5c6a2001c8a044e.pdf,2400
+K-031,Ocena kreditne sposobnosti,2026-11-20T11:05:13+01:00,referent1,referent,system,ocenjena,11000,B,prenova_stanovanja,data/uploads/5a92a99aa9b04db1b5c6a2001c8a044e.pdf,2400
+K-031,Poslana e-pošta stranki,2026-11-20T11:05:13+01:00,referent1,referent,manual,ocenjena,11000,B,prenova_stanovanja,data/uploads/5a92a99aa9b04db1b5c6a2001c8a044e.pdf,2400
+K-031,Odobritev vloge,2026-11-20T11:05:13+01:00,referent1,referent,system,odlocitev_sprejeta,11000,B,prenova_stanovanja,data/uploads/5a92a99aa9b04db1b5c6a2001c8a044e.pdf,2400
+K-031,Obveščanje o odobritvi,2026-11-20T11:05:13+01:00,sistem,sistem,system,odobrena,11000,B,prenova_stanovanja,data/uploads/5a92a99aa9b04db1b5c6a2001c8a044e.pdf,2400
+K-032,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:14+01:00,iup06_20_cases_v1_customer_13,stranka,system,oddana,16000,,nakup_vozila,data/uploads/d5eb9d4ac1eb4a12883bb5cf226c3e9d.pdf,3200
+K-032,Samodejno preverjanje vloge,2026-11-20T11:05:14+01:00,sistem,sistem,system,preverjena,16000,,nakup_vozila,data/uploads/d5eb9d4ac1eb4a12883bb5cf226c3e9d.pdf,3200
+K-032,Prevzem kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,16000,,nakup_vozila,data/uploads/d5eb9d4ac1eb4a12883bb5cf226c3e9d.pdf,3200
+K-032,Pregled kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,16000,,nakup_vozila,data/uploads/d5eb9d4ac1eb4a12883bb5cf226c3e9d.pdf,3200
+K-032,Priprava zahteve za dopolnitev vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_dopolnitvi,16000,,nakup_vozila,data/uploads/d5eb9d4ac1eb4a12883bb5cf226c3e9d.pdf,3200
+K-032,Pošiljanje zahteve za dopolnitev,2026-11-20T11:05:14+01:00,sistem,sistem,system,v_dopolnitvi,16000,,nakup_vozila,data/uploads/d5eb9d4ac1eb4a12883bb5cf226c3e9d.pdf,3200
+K-032,Dopolnitev in oddaja kreditne vloge,2026-11-20T11:05:14+01:00,iup06_20_cases_v1_customer_13,stranka,system,dopolnjena,16000,,prenova_stanovanja,data/uploads/c9e44e387d404cd998ee410fe5e9dec5.pdf,3200
+K-032,Pregled kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,16000,,prenova_stanovanja,data/uploads/c9e44e387d404cd998ee410fe5e9dec5.pdf,3200
+K-032,Ocena kreditne sposobnosti,2026-11-20T11:05:14+01:00,referent1,referent,system,ocenjena,16000,A,prenova_stanovanja,data/uploads/c9e44e387d404cd998ee410fe5e9dec5.pdf,3200
+K-032,Prejeta e-pošta stranke,2026-11-20T11:05:14+01:00,referent1,referent,manual,ocenjena,16000,A,prenova_stanovanja,data/uploads/c9e44e387d404cd998ee410fe5e9dec5.pdf,3200
+K-032,Odobritev vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,odlocitev_sprejeta,16000,A,prenova_stanovanja,data/uploads/c9e44e387d404cd998ee410fe5e9dec5.pdf,3200
+K-032,Obveščanje o odobritvi,2026-11-20T11:05:14+01:00,sistem,sistem,system,odobrena,16000,A,prenova_stanovanja,data/uploads/c9e44e387d404cd998ee410fe5e9dec5.pdf,3200
+K-033,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:14+01:00,iup06_20_cases_v1_customer_14,stranka,system,oddana,19000,,nakup_vozila,data/uploads/0c6277eeb0f145669d0a9ee28ac4c560.pdf,3600
+K-033,Samodejno preverjanje vloge,2026-11-20T11:05:14+01:00,sistem,sistem,system,preverjena,19000,,nakup_vozila,data/uploads/0c6277eeb0f145669d0a9ee28ac4c560.pdf,3600
+K-033,Prevzem kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,19000,,nakup_vozila,data/uploads/0c6277eeb0f145669d0a9ee28ac4c560.pdf,3600
+K-033,Pregled kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,19000,,nakup_vozila,data/uploads/0c6277eeb0f145669d0a9ee28ac4c560.pdf,3600
+K-033,Priprava zahteve za dopolnitev vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_dopolnitvi,19000,,nakup_vozila,data/uploads/0c6277eeb0f145669d0a9ee28ac4c560.pdf,3600
+K-033,Pošiljanje zahteve za dopolnitev,2026-11-20T11:05:14+01:00,sistem,sistem,system,v_dopolnitvi,19000,,nakup_vozila,data/uploads/0c6277eeb0f145669d0a9ee28ac4c560.pdf,3600
+K-033,Dopolnitev in oddaja kreditne vloge,2026-11-20T11:05:14+01:00,iup06_20_cases_v1_customer_14,stranka,system,dopolnjena,19000,,prenova_stanovanja,data/uploads/f3e3728d9db3419d8ca0958be28c98ed.pdf,3600
+K-033,Pregled kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,19000,,prenova_stanovanja,data/uploads/f3e3728d9db3419d8ca0958be28c98ed.pdf,3600
+K-033,Ocena kreditne sposobnosti,2026-11-20T11:05:14+01:00,referent1,referent,system,ocenjena,19000,B,prenova_stanovanja,data/uploads/f3e3728d9db3419d8ca0958be28c98ed.pdf,3600
+K-033,Dodatno preverjanje dokumentacije,2026-11-20T11:05:14+01:00,referent1,referent,manual,ocenjena,19000,B,prenova_stanovanja,data/uploads/f3e3728d9db3419d8ca0958be28c98ed.pdf,3600
+K-033,Odobritev vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,odlocitev_sprejeta,19000,B,prenova_stanovanja,data/uploads/f3e3728d9db3419d8ca0958be28c98ed.pdf,3600
+K-033,Obveščanje o odobritvi,2026-11-20T11:05:14+01:00,sistem,sistem,system,odobrena,19000,B,prenova_stanovanja,data/uploads/f3e3728d9db3419d8ca0958be28c98ed.pdf,3600
+K-034,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:14+01:00,iup06_20_cases_v1_customer_15,stranka,system,oddana,6500,,prenova_stanovanja,data/uploads/8e8757e59c4c446a807425137d9629a8.pdf,1700
+K-034,Samodejno preverjanje vloge,2026-11-20T11:05:14+01:00,sistem,sistem,system,preverjena,6500,,prenova_stanovanja,data/uploads/8e8757e59c4c446a807425137d9629a8.pdf,1700
+K-034,Prevzem kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,6500,,prenova_stanovanja,data/uploads/8e8757e59c4c446a807425137d9629a8.pdf,1700
+K-034,Pregled kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,6500,,prenova_stanovanja,data/uploads/8e8757e59c4c446a807425137d9629a8.pdf,1700
+K-034,Ocena kreditne sposobnosti,2026-11-20T11:05:14+01:00,referent1,referent,system,ocenjena,6500,C,prenova_stanovanja,data/uploads/8e8757e59c4c446a807425137d9629a8.pdf,1700
+K-034,Zavrnitev vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,odlocitev_sprejeta,6500,C,prenova_stanovanja,data/uploads/8e8757e59c4c446a807425137d9629a8.pdf,1700
+K-034,Obveščanje o zavrnitvi,2026-11-20T11:05:14+01:00,sistem,sistem,system,zavrnjena,6500,C,prenova_stanovanja,data/uploads/8e8757e59c4c446a807425137d9629a8.pdf,1700
+K-035,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:14+01:00,iup06_20_cases_v1_customer_16,stranka,system,oddana,13000,,prenova_stanovanja,data/uploads/ee4e761418e54e93a10243cb00b99035.pdf,2200
+K-035,Samodejno preverjanje vloge,2026-11-20T11:05:14+01:00,sistem,sistem,system,preverjena,13000,,prenova_stanovanja,data/uploads/ee4e761418e54e93a10243cb00b99035.pdf,2200
+K-035,Prevzem kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,13000,,prenova_stanovanja,data/uploads/ee4e761418e54e93a10243cb00b99035.pdf,2200
+K-035,Pregled kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,13000,,prenova_stanovanja,data/uploads/ee4e761418e54e93a10243cb00b99035.pdf,2200
+K-035,Ocena kreditne sposobnosti,2026-11-20T11:05:14+01:00,referent1,referent,system,ocenjena,13000,C,prenova_stanovanja,data/uploads/ee4e761418e54e93a10243cb00b99035.pdf,2200
+K-035,Zavrnitev vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,odlocitev_sprejeta,13000,C,prenova_stanovanja,data/uploads/ee4e761418e54e93a10243cb00b99035.pdf,2200
+K-035,Obveščanje o zavrnitvi,2026-11-20T11:05:14+01:00,sistem,sistem,system,zavrnjena,13000,C,prenova_stanovanja,data/uploads/ee4e761418e54e93a10243cb00b99035.pdf,2200
+K-036,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:14+01:00,iup06_20_cases_v1_customer_17,stranka,system,oddana,17000,,prenova_stanovanja,data/uploads/cf996d9b9dac40b19f44878a8d94a607.pdf,2800
+K-036,Samodejno preverjanje vloge,2026-11-20T11:05:14+01:00,sistem,sistem,system,preverjena,17000,,prenova_stanovanja,data/uploads/cf996d9b9dac40b19f44878a8d94a607.pdf,2800
+K-036,Prevzem kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,17000,,prenova_stanovanja,data/uploads/cf996d9b9dac40b19f44878a8d94a607.pdf,2800
+K-036,Pregled kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,17000,,prenova_stanovanja,data/uploads/cf996d9b9dac40b19f44878a8d94a607.pdf,2800
+K-036,Ocena kreditne sposobnosti,2026-11-20T11:05:14+01:00,referent1,referent,system,ocenjena,17000,B,prenova_stanovanja,data/uploads/cf996d9b9dac40b19f44878a8d94a607.pdf,2800
+K-036,Zavrnitev vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,odlocitev_sprejeta,17000,B,prenova_stanovanja,data/uploads/cf996d9b9dac40b19f44878a8d94a607.pdf,2800
+K-036,Obveščanje o zavrnitvi,2026-11-20T11:05:14+01:00,sistem,sistem,system,zavrnjena,17000,B,prenova_stanovanja,data/uploads/cf996d9b9dac40b19f44878a8d94a607.pdf,2800
+K-037,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:14+01:00,iup06_20_cases_v1_customer_18,stranka,system,oddana,25000,,prenova_stanovanja,data/uploads/7f48a96116314d8aafd6a2b4475a268d.pdf,4800
+K-037,Samodejno preverjanje vloge,2026-11-20T11:05:14+01:00,sistem,sistem,system,preverjena,25000,,prenova_stanovanja,data/uploads/7f48a96116314d8aafd6a2b4475a268d.pdf,4800
+K-037,Prevzem kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/7f48a96116314d8aafd6a2b4475a268d.pdf,4800
+K-037,Pregled kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,25000,,prenova_stanovanja,data/uploads/7f48a96116314d8aafd6a2b4475a268d.pdf,4800
+K-037,Ocena kreditne sposobnosti,2026-11-20T11:05:14+01:00,referent1,referent,system,ocenjena,25000,A,prenova_stanovanja,data/uploads/7f48a96116314d8aafd6a2b4475a268d.pdf,4800
+K-037,Posvet z vodjo,2026-11-20T11:05:14+01:00,referent1,referent,manual,ocenjena,25000,A,prenova_stanovanja,data/uploads/7f48a96116314d8aafd6a2b4475a268d.pdf,4800
+K-037,Posredovanje vloge vodji,2026-11-20T11:05:14+01:00,referent1,referent,system,pri_vodji,25000,A,prenova_stanovanja,data/uploads/7f48a96116314d8aafd6a2b4475a268d.pdf,4800
+K-037,Pregled vloge,2026-11-20T11:05:14+01:00,vodja1,vodja,system,pri_vodji,25000,A,prenova_stanovanja,data/uploads/7f48a96116314d8aafd6a2b4475a268d.pdf,4800
+K-037,Odobritev vloge,2026-11-20T11:05:14+01:00,vodja1,vodja,system,odlocitev_sprejeta,25000,A,prenova_stanovanja,data/uploads/7f48a96116314d8aafd6a2b4475a268d.pdf,4800
+K-037,Obveščanje o odobritvi,2026-11-20T11:05:14+01:00,sistem,sistem,system,odobrena,25000,A,prenova_stanovanja,data/uploads/7f48a96116314d8aafd6a2b4475a268d.pdf,4800
+K-038,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:14+01:00,iup06_20_cases_v1_customer_19,stranka,system,oddana,35000,,prenova_stanovanja,data/uploads/3bed280775654320ac6b5f323a8c0453.pdf,5700
+K-038,Samodejno preverjanje vloge,2026-11-20T11:05:14+01:00,sistem,sistem,system,preverjena,35000,,prenova_stanovanja,data/uploads/3bed280775654320ac6b5f323a8c0453.pdf,5700
+K-038,Prevzem kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,35000,,prenova_stanovanja,data/uploads/3bed280775654320ac6b5f323a8c0453.pdf,5700
+K-038,Pregled kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,35000,,prenova_stanovanja,data/uploads/3bed280775654320ac6b5f323a8c0453.pdf,5700
+K-038,Ocena kreditne sposobnosti,2026-11-20T11:05:14+01:00,referent1,referent,system,ocenjena,35000,B,prenova_stanovanja,data/uploads/3bed280775654320ac6b5f323a8c0453.pdf,5700
+K-038,Posredovanje vloge vodji,2026-11-20T11:05:14+01:00,referent1,referent,system,pri_vodji,35000,B,prenova_stanovanja,data/uploads/3bed280775654320ac6b5f323a8c0453.pdf,5700
+K-038,Pregled vloge,2026-11-20T11:05:14+01:00,vodja1,vodja,system,pri_vodji,35000,B,prenova_stanovanja,data/uploads/3bed280775654320ac6b5f323a8c0453.pdf,5700
+K-038,Odobritev vloge,2026-11-20T11:05:14+01:00,vodja1,vodja,system,odlocitev_sprejeta,35000,B,prenova_stanovanja,data/uploads/3bed280775654320ac6b5f323a8c0453.pdf,5700
+K-038,Obveščanje o odobritvi,2026-11-20T11:05:14+01:00,sistem,sistem,system,odobrena,35000,B,prenova_stanovanja,data/uploads/3bed280775654320ac6b5f323a8c0453.pdf,5700
+K-039,Izpolnitev in oddaja kreditne vloge,2026-11-20T11:05:14+01:00,iup06_20_cases_v1_customer_20,stranka,system,oddana,30000,,prenova_stanovanja,data/uploads/a51e35fcf67540bf8404779fb7714eed.pdf,2600
+K-039,Samodejno preverjanje vloge,2026-11-20T11:05:14+01:00,sistem,sistem,system,preverjena,30000,,prenova_stanovanja,data/uploads/a51e35fcf67540bf8404779fb7714eed.pdf,2600
+K-039,Prevzem kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,30000,,prenova_stanovanja,data/uploads/a51e35fcf67540bf8404779fb7714eed.pdf,2600
+K-039,Pregled kreditne vloge,2026-11-20T11:05:14+01:00,referent1,referent,system,v_pregledu,30000,,prenova_stanovanja,data/uploads/a51e35fcf67540bf8404779fb7714eed.pdf,2600
+K-039,Ocena kreditne sposobnosti,2026-11-20T11:05:14+01:00,referent1,referent,system,ocenjena,30000,C,prenova_stanovanja,data/uploads/a51e35fcf67540bf8404779fb7714eed.pdf,2600
+K-039,Posredovanje vloge vodji,2026-11-20T11:05:14+01:00,referent1,referent,system,pri_vodji,30000,C,prenova_stanovanja,data/uploads/a51e35fcf67540bf8404779fb7714eed.pdf,2600
+K-039,Pregled vloge,2026-11-20T11:05:14+01:00,vodja1,vodja,system,pri_vodji,30000,C,prenova_stanovanja,data/uploads/a51e35fcf67540bf8404779fb7714eed.pdf,2600
+K-039,Zavrnitev vloge,2026-11-20T11:05:14+01:00,vodja1,vodja,system,odlocitev_sprejeta,30000,C,prenova_stanovanja,data/uploads/a51e35fcf67540bf8404779fb7714eed.pdf,2600
+K-039,Obveščanje o zavrnitvi,2026-11-20T11:05:14+01:00,sistem,sistem,system,zavrnjena,30000,C,prenova_stanovanja,data/uploads/a51e35fcf67540bf8404779fb7714eed.pdf,2600
